@@ -1,5 +1,6 @@
 # == Class: influxdb
 class influxdb {
+  include influxdb::config
   include influxdb::params
 
   package { 'influxdb':

@@ -8,3 +8,4 @@ description 'Setup and manage influxdb'
 project_page 'https://github.com/justindowning/puppet-influxdb'
 
 dependency 'nanliu/puppet-staging', '>= 0.4.0'
+dependency 'puppetlabs/inifile', '>= 1.0.0'

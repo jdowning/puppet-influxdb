@@ -1,5 +1,7 @@
 # == Class: influxdb::params
 class influxdb::params {
+  $ensure = 'installed'
+
   case $::osfamily {
     'Debian': {
       $package_provider = 'dpkg'

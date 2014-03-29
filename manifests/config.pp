@@ -157,8 +157,9 @@ class influxdb::config {
 
   # defaults for all settings
   Ini_setting {
-    ensure => present,
-    path   => '/opt/influxdb/shared/config.toml',
-    notify => Service['influxdb'],
+    ensure  => present,
+    path    => '/opt/influxdb/shared/config.toml',
+    notify  => Service['influxdb'],
+    require => Package['influxdb'],
   }
 }

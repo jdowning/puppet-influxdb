@@ -1,164 +1,164 @@
 # == Class: influxdb::config
 # More information on these settings available at: http://influxdb.org/docs/configuration.html
 class influxdb::config {
-  ini_setting { 'binding-address':
+  ini_setting { 'binding_address':
     section => '',
     setting => 'binding-address',
-    value   => '0.0.0.0',
+    value   => $influxdb::binding_address,
   }
 
   # [logging]
-  ini_setting { 'logging-level':
+  ini_setting { 'logging_level':
     section => 'logging',
     setting => 'level',
-    value   => 'info',
+    value   => $influxdb::logging_level,
   }
 
-  ini_setting { 'logging-file':
+  ini_setting { 'logging_file':
     section => 'logging',
     setting => 'file',
-    value   => '/opt/influxdb/shared/influxdb.log',
+    value   => $influxdb::logging_file,
   }
 
   # [admin]
-  ini_setting { 'admin-port':
+  ini_setting { 'admin_port':
     section => 'admin',
     setting => 'port',
-    value   => '8083',
+    value   => $influxdb::admin_port,
   }
 
-  ini_setting { 'admin-assets':
+  ini_setting { 'admin_assets':
     section => 'admin',
     setting => 'assets',
-    value   => '/opt/influxdb/current/admin',
+    value   => $influxdb::admin_assets,
   }
 
   # [api]
-  ini_setting { 'api-port':
+  ini_setting { 'api_port':
     section => 'api',
     setting => 'port',
-    value   => '8086',
+    value   => $influxdb::api_port,
   }
 
   # [raft]
-  ini_setting { 'raft-port':
+  ini_setting { 'raft_port':
     section => 'raft',
     setting => 'port',
-    value   => '8090',
+    value   => $influxdb::raft_port,
   }
 
-  ini_setting { 'raft-dir':
+  ini_setting { 'raft_dir':
     section => 'raft',
     setting => 'dir',
-    value   => '/opt/influxdb/shared/data/raft',
+    value   => $influxdb::raft_dir,
   }
 
   # [storage]
-  ini_setting { 'storage-dir':
+  ini_setting { 'storage_dir':
     section => 'storage',
     setting => 'dir',
-    value   => '/opt/influxdb/shared/data/db',
+    value   => $influxdb::storage_dir,
   }
 
-  ini_setting { 'storage-write-buffer-size':
+  ini_setting { 'storage_write_buffer_size':
     section => 'storage',
     setting => 'write-buffer-size',
-    value   => '10000',
+    value   => $influxdb::storage_write_buffer_size,
   }
 
   # [cluster]
-  ini_setting { 'cluster-protobuf_port':
+  ini_setting { 'cluster_protobuf_port':
     section => 'cluster',
     setting => 'protobuf_port',
-    value   => '8099',
+    value   => $influxdb::cluster_protobuf_port,
   }
 
-  ini_setting { 'cluster-protobuf_timeout':
+  ini_setting { 'cluster_protobuf_timeout':
     section => 'cluster',
     setting => 'protobuf_timeout',
-    value   => '2s',
+    value   => $influxdb::cluster_protobuf_timeout,
   }
 
-  ini_setting { 'cluster-protobuf_heartbeat':
+  ini_setting { 'cluster_protobuf_heartbeat':
     section => 'cluster',
     setting => 'protobuf_heartbeat',
-    value   => '200ms',
+    value   => $influxdb::cluster_protobuf_heartbeat,
   }
 
-  ini_setting { 'cluster-write-buffer-size':
+  ini_setting { 'cluster_write_buffer_size':
     section => 'cluster',
     setting => 'write-buffer-size',
-    value   => '10000',
+    value   => $influxdb::cluster_write_buffer_size,
   }
 
-  ini_setting { 'cluster-query-shard-buffer-size':
+  ini_setting { 'cluster_query_shard_buffer_size':
     section => 'cluster',
     setting => 'query-shard-buffer-size',
-    value   => '1000',
+    value   => $influxdb::cluster_query_shard_buffer_size,
   }
 
   # [leveldb]
-  ini_setting { 'levledb-max-open-files':
+  ini_setting { 'levledb_max_open_files':
     section => 'levledb',
     setting => 'max-open-files',
-    value   => '40',
+    value   => $influxdb::leveldb_max_open_files,
   }
 
-  ini_setting { 'levledb-lru-cache-size':
+  ini_setting { 'levledb_lru_cache_size':
     section => 'levledb',
     setting => 'lru-cache-size',
-    value   => '200m',
+    value   => $influxdb::leveldb_lru_cache_size,
   }
 
-  ini_setting { 'levledb-max-open-shards':
+  ini_setting { 'levledb_max_open_shards':
     section => 'levledb',
     setting => 'max-open-shards',
-    value   => '0',
+    value   => $influxdb::leveldb_max_open_shards,
   }
 
-  ini_setting { 'levledb-point-batch-size':
+  ini_setting { 'levledb_point_batch_size':
     section => 'levledb',
     setting => 'point-batch-size',
-    value   => '100',
+    value   => $influxdb::leveldb_point_batch_size,
   }
 
   # [sharding]
 
   # [wal]
-  ini_setting { 'wal-dir':
+  ini_setting { 'wal_dir':
     section => 'wal',
     setting => 'dir',
-    value   => '/opt/influxdb/shared/data/wal',
+    value   => $influxdb::wal_dir,
   }
 
-  ini_setting { 'wal-flush-after':
+  ini_setting { 'wal_flush_after':
     section => 'wal',
     setting => 'flush-after',
-    value   => '0',
+    value   => $influxdb::wal_flush_after,
   }
 
-  ini_setting { 'wal-bookmark-after':
+  ini_setting { 'wal_bookmark_after':
     section => 'wal',
     setting => 'bookmark-after',
-    value   => '0',
+    value   => $influxdb::wal_bookmark_after,
   }
 
-  ini_setting { 'wal-index-after':
+  ini_setting { 'wal_index_after':
     section => 'wal',
     setting => 'index-after',
-    value   => '1000',
+    value   => $influxdb::wal_index_after,
   }
 
-  ini_setting { 'wal-requests-per-logfile':
+  ini_setting { 'wal_requests_per_logfile':
     section => 'wal',
     setting => 'requests-per-logfile',
-    value   => '10000',
+    value   => $influxdb::wal_requests_per_logfile,
   }
 
   # defaults for all settings
   Ini_setting {
     ensure  => present,
-    path    => '/opt/influxdb/shared/config.toml',
+    path    => $influxdb::config_path,
     notify  => Service['influxdb'],
     require => Package['influxdb'],
   }

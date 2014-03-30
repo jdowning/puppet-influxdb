@@ -1,0 +1,7 @@
+---
+fixtures:
+  repositories:
+    inifile: https://github.com/puppetlabs/puppetlabs-inifile
+    staging: https://github.com/nanliu/puppet-staging
+  symlinks:
+    influxdb: "#{source_dir}"

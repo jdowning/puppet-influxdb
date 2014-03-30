@@ -1,11 +1,10 @@
 # == Class: influxdb
 class influxdb (
   $ensure                           =  $influxdb::params::ensure,
+  $version                          =  $influxdb::params::version,
+
   $binding_address                  =  $influxdb::params::binding_address,
   $config_path                      =  $influxdb::params::config_path,
-
-  $package_provider                 =  $influxdb::params::package_provider,
-  $package_source                   =  $influxdb::params::package_source,
 
   $logging_level                    =  $influxdb::params::logging_level,
   $logging_file                     =  $influxdb::params::logging_file,

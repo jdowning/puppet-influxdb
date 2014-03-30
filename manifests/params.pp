@@ -2,6 +2,8 @@
 # DO NOT DIRECTLY
 class influxdb::params {
   $ensure                           =  'installed'
+  $version                          =  'latest'
+
   $binding_address                  =  '0.0.0.0'
   $config_path                      =  '/opt/influxdb/shared/config.toml'
 
@@ -43,25 +45,4 @@ class influxdb::params {
   $wal_bookmark_after               =  '0'
   $wal_index_after                  =  '1000'
   $wal_requests_per_logfile         =  '10000'
-
-  # package details
-  case $::osfamily {
-    'Debian': {
-      $package_provider = 'dpkg'
-      $package_source = $::architecture ? {
-        /64/    => 'http://s3.amazonaws.com/influxdb/influxdb_latest_amd64.deb',
-        default => 'http://s3.amazonaws.com/influxdb/influxdb_latest_i386.deb',
-      }
-    }
-    'RedHat', 'Amazon': {
-      $package_provider = 'rpm'
-      $package_source = $::architecture ? {
-        /64/    => 'http://s3.amazonaws.com/influxdb/influxdb-latest-1.x86_64.rpm',
-        default => 'http://s3.amazonaws.com/influxdb/influxdb-latest-1.i686.rpm',
-      }
-    }
-    default: {
-      fail('Only supports Debian or RedHat $::osfamily')
-    }
-  }
 }

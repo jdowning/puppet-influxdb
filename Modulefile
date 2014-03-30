@@ -1,4 +1,4 @@
-name    'jdowning/influxdb'
+name 'jdowning/influxdb'
 version '0.1.0'
 source 'https://github.com/justindowning/puppet-influxdb'
 author 'Justin Downing'

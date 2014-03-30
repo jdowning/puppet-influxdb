@@ -4,7 +4,10 @@
 
 ## Description
 
-This Puppet module will install [influxdb](https://influxdb.org). It is works with Debian/Ubuntu based distros. It should also work with RedHat/CentOS.
+This Puppet module will install [influxdb](https://influxdb.org) on Debian or RedHat.
+
+This module is still under active development so things are likely to change. If
+you have any ideas or contributions, feel free to open a pull request!
 
 ## Installation
 
@@ -13,6 +16,8 @@ This Puppet module will install [influxdb](https://influxdb.org). It is works wi
 ## Usage
 
 `class { 'influxdb': }`
+
+Most of the configuration is parameterized, so you can freely adjust settings.
 
 ## Testing
 

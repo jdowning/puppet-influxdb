@@ -1,23 +1,23 @@
 # == Class: influxdb::config
 # More information on these settings available at: http://influxdb.org/docs/configuration.html
 class influxdb::config {
-  ini_setting { 'binding_address':
+  ini_setting { 'bind_address':
     section => '',
-    setting => 'binding-address',
-    value   => $influxdb::binding_address,
+    setting => 'bind-address',
+    value   => "\"${influxdb::binding_address}\"",
   }
 
   # [logging]
   ini_setting { 'logging_level':
     section => 'logging',
     setting => 'level',
-    value   => $influxdb::logging_level,
+    value   => "\"${influxdb::logging_level}\"",
   }
 
   ini_setting { 'logging_file':
     section => 'logging',
     setting => 'file',
-    value   => $influxdb::logging_file,
+    value   => "\"${influxdb::logging_file}\"",
   }
 
   # [admin]
@@ -30,7 +30,7 @@ class influxdb::config {
   ini_setting { 'admin_assets':
     section => 'admin',
     setting => 'assets',
-    value   => $influxdb::admin_assets,
+    value   => "\"${influxdb::admin_assets}\"",
   }
 
   # [api]
@@ -50,14 +50,14 @@ class influxdb::config {
   ini_setting { 'raft_dir':
     section => 'raft',
     setting => 'dir',
-    value   => $influxdb::raft_dir,
+    value   => "\"${influxdb::raft_dir}\"",
   }
 
   # [storage]
   ini_setting { 'storage_dir':
     section => 'storage',
     setting => 'dir',
-    value   => $influxdb::storage_dir,
+    value   => "\"${influxdb::storage_dir}\"",
   }
 
   ini_setting { 'storage_write_buffer_size':
@@ -76,13 +76,13 @@ class influxdb::config {
   ini_setting { 'cluster_protobuf_timeout':
     section => 'cluster',
     setting => 'protobuf_timeout',
-    value   => $influxdb::cluster_protobuf_timeout,
+    value   => "\"${influxdb::cluster_protobuf_timeout}\"",
   }
 
   ini_setting { 'cluster_protobuf_heartbeat':
     section => 'cluster',
     setting => 'protobuf_heartbeat',
-    value   => $influxdb::cluster_protobuf_heartbeat,
+    value   => "\"${influxdb::cluster_protobuf_heartbeat}\"",
   }
 
   ini_setting { 'cluster_write_buffer_size':
@@ -107,7 +107,7 @@ class influxdb::config {
   ini_setting { 'levledb_lru_cache_size':
     section => 'levledb',
     setting => 'lru-cache-size',
-    value   => $influxdb::leveldb_lru_cache_size,
+    value   => "\"${influxdb::leveldb_lru_cache_size}\"",
   }
 
   ini_setting { 'levledb_max_open_shards':
@@ -128,7 +128,7 @@ class influxdb::config {
   ini_setting { 'wal_dir':
     section => 'wal',
     setting => 'dir',
-    value   => $influxdb::wal_dir,
+    value   => "\"${influxdb::wal_dir}\"",
   }
 
   ini_setting { 'wal_flush_after':

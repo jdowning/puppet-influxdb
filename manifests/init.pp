@@ -3,7 +3,7 @@ class influxdb (
   $ensure                           =  $influxdb::params::ensure,
   $version                          =  $influxdb::params::version,
 
-  $binding_address                  =  $influxdb::params::binding_address,
+  $bind_address                     =  $influxdb::params::bind_address,
   $config_path                      =  $influxdb::params::config_path,
 
   $logging_level                    =  $influxdb::params::logging_level,

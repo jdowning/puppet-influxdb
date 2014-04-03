@@ -1,10 +1,10 @@
 # == Class: influxdb::params
-# DO NOT DIRECTLY
+# DO NOT CALL DIRECTLY
 class influxdb::params {
   $ensure                           =  'installed'
   $version                          =  'latest'
 
-  $binding_address                  =  '0.0.0.0'
+  $bind_address                     =  '0.0.0.0'
   $config_path                      =  '/opt/influxdb/shared/config.toml'
 
   # [logging]

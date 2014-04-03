@@ -1,0 +1,75 @@
+{
+  "name": "jdowning/influxdb",
+  "version": "0.1.0",
+  "source": "https://github.com/justindowning/puppet-influxdb",
+  "author": "Justin Downing",
+  "license": "Apache License, Version 2.0",
+  "summary": "Setup and manage influxdb",
+  "description": "Setup and manage influxdb",
+  "project_page": "https://github.com/justindowning/puppet-influxdb",
+  "dependencies": [
+    {
+      "name": "nanliu/puppet-staging",
+      "version_requirement": ">= 0.4.0"
+    },
+    {
+      "name": "puppetlabs/inifile",
+      "version_requirement": ">= 1.0.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "10.04",
+        "12.04",
+        "14.04"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": "3.2.x"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": "3.x"
+    }
+  ]
+}

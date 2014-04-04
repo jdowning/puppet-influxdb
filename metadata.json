@@ -1,6 +1,6 @@
 {
   "name": "jdowning/influxdb",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "source": "https://github.com/justindowning/puppet-influxdb",
   "author": "Justin Downing",
   "license": "Apache License, Version 2.0",
@@ -9,7 +9,7 @@
   "project_page": "https://github.com/justindowning/puppet-influxdb",
   "dependencies": [
     {
-      "name": "nanliu/puppet-staging",
+      "name": "nanliu/staging",
       "version_requirement": ">= 0.4.0"
     },
     {

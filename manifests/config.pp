@@ -4,7 +4,7 @@ class influxdb::config {
   ini_setting { 'bind_address':
     section => '',
     setting => 'bind-address',
-    value   => "\"${influxdb::binding_address}\"",
+    value   => "\"${influxdb::bind_address}\"",
   }
 
   # [logging]
@@ -98,26 +98,26 @@ class influxdb::config {
   }
 
   # [leveldb]
-  ini_setting { 'levledb_max_open_files':
-    section => 'levledb',
+  ini_setting { 'leveldb_max_open_files':
+    section => 'leveldb',
     setting => 'max-open-files',
     value   => $influxdb::leveldb_max_open_files,
   }
 
-  ini_setting { 'levledb_lru_cache_size':
-    section => 'levledb',
+  ini_setting { 'leveldb_lru_cache_size':
+    section => 'leveldb',
     setting => 'lru-cache-size',
     value   => "\"${influxdb::leveldb_lru_cache_size}\"",
   }
 
-  ini_setting { 'levledb_max_open_shards':
-    section => 'levledb',
+  ini_setting { 'leveldb_max_open_shards':
+    section => 'leveldb',
     setting => 'max-open-shards',
     value   => $influxdb::leveldb_max_open_shards,
   }
 
-  ini_setting { 'levledb_point_batch_size':
-    section => 'levledb',
+  ini_setting { 'leveldb_point_batch_size':
+    section => 'leveldb',
     setting => 'point-batch-size',
     value   => $influxdb::leveldb_point_batch_size,
   }

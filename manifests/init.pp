@@ -24,6 +24,7 @@ class influxdb (
   $cluster_protobuf_timeout         =  $influxdb::params::cluster_protobuf_timeout,
   $cluster_protobuf_heartbeat       =  $influxdb::params::cluster_protobuf_heartbeat,
   $cluster_write_buffer_size        =  $influxdb::params::cluster_write_buffer_size,
+  $cluster_max_response_buffer_size =  $influxdb::params::cluster_max_response_buffer_size,
   $cluster_query_shard_buffer_size  =  $influxdb::params::cluster_query_shard_buffer_size,
 
   $leveldb_max_open_files           =  $influxdb::params::leveldb_max_open_files,

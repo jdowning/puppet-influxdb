@@ -91,6 +91,12 @@ class influxdb::config {
     value   => $influxdb::cluster_write_buffer_size,
   }
 
+  ini_setting { 'cluster_max_response_buffer_size',
+    section => 'cluster',
+    setting => 'max-response-buffer-size',
+    value   => $influxdb::cluster_max_response_buffer_size,
+  }
+
   ini_setting { 'cluster_query_shard_buffer_size':
     section => 'cluster',
     setting => 'query-shard-buffer-size',

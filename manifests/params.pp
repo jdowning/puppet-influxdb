@@ -31,6 +31,7 @@ class influxdb::params {
   $cluster_protobuf_timeout         =  '2s'
   $cluster_protobuf_heartbeat       =  '200ms'
   $cluster_write_buffer_size        =  '10000'
+  $cluster_max_response_buffer_size =  '100000'
   $cluster_query_shard_buffer_size  =  '1000'
 
   # [leveldb]

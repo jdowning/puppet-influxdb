@@ -1,14 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-fail "You must set PUPPET_HOME to proceed" if ENV['PUPPET_HOME'] == nil
-PUPPET_HOME= ENV['PUPPET_HOME']
-
 Vagrant.configure("2") do |config|
   config.vm.hostname = 'puppet-influxdb'
-  config.vm.synced_folder ".", "/tmp/influxdb"
-  config.vm.synced_folder "#{PUPPET_HOME}/modules/inifile", "/tmp/inifile"
-  config.vm.synced_folder "#{PUPPET_HOME}/modules/staging", "/tmp/staging"
+  config.vm.synced_folder "modules", "/tmp/puppet-modules", type: "rsync", rsync__exclude: ".git/"
+  config.vm.synced_folder ".", "/tmp/puppet-modules/influxdb", type: "rsync", rsync__exclude: ".git/"
 
   config.vm.define "centos" do |centos|
     centos.vm.box     = 'centos64'
@@ -16,7 +12,7 @@ Vagrant.configure("2") do |config|
     centos.vm.provision :puppet do |puppet|
       puppet.manifests_path = "tests"
       puppet.manifest_file  = "vagrant.pp"
-      puppet.options        = ["--modulepath", "/tmp"]
+      puppet.options        = ["--modulepath", "/tmp/puppet-modules"]
     end
   end
 
@@ -26,7 +22,7 @@ Vagrant.configure("2") do |config|
     ubuntu.vm.provision :puppet do |puppet|
       puppet.manifests_path = "tests"
       puppet.manifest_file  = "vagrant.pp"
-      puppet.options        = ["--modulepath", "/tmp"]
+      puppet.options        = ["--modulepath", "/tmp/puppet-modules"]
     end
   end
 end

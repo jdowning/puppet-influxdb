@@ -21,4 +21,8 @@ Most of the configuration is parameterized, so you can freely adjust settings.
 
 ## Testing
 
-`vagrant up`
+```
+bundle install
+bundle librarian-puppet install
+vagrant up
+```

@@ -1,5 +1,5 @@
 name 'jdowning/influxdb'
-version '0.1.3'
+version '0.2.0'
 source 'https://github.com/justindowning/puppet-influxdb'
 author 'Justin Downing'
 license 'Apache License, Version 2.0'

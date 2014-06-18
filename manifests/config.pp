@@ -1,6 +1,12 @@
 # == Class: influxdb::config
 # More information on these settings available at: http://influxdb.org/docs/configuration.html
 class influxdb::config {
+  ini_setting { 'hostname':
+    section => '',
+    setting => 'hostname',
+    value   => "\"${influxdb::hostname}\"",
+  }
+
   ini_setting { 'bind_address':
     section => '',
     setting => 'bind-address',
@@ -40,6 +46,12 @@ class influxdb::config {
     value   => $influxdb::api_port,
   }
 
+  ini_setting { 'api_read_timeout':
+    section => 'api',
+    setting => 'read-timeout',
+    value   => "\"${influxdb::api_read_timeout}\"",
+  }
+
   # [raft]
   ini_setting { 'raft_port':
     section => 'raft',
@@ -51,6 +63,12 @@ class influxdb::config {
     section => 'raft',
     setting => 'dir',
     value   => "\"${influxdb::raft_dir}\"",
+  }
+
+  ini_setting { 'raft_election_timeout':
+    section => 'raft',
+    setting => 'election-timeout',
+    value   => "\"${influxdb::raft_election_timeout}\"",
   }
 
   # [storage]
@@ -67,6 +85,12 @@ class influxdb::config {
   }
 
   # [cluster]
+  ini_setting { 'cluster_seed_servers':
+    section => 'cluster',
+    setting => 'seed-servers',
+    value   => $influxdb::cluster_seed_servers,
+  }
+
   ini_setting { 'cluster_protobuf_port':
     section => 'cluster',
     setting => 'protobuf_port',
@@ -85,6 +109,18 @@ class influxdb::config {
     value   => "\"${influxdb::cluster_protobuf_heartbeat}\"",
   }
 
+  ini_setting { 'cluster_protobuf_min_backoff':
+    section => 'cluster',
+    setting => 'protobuf_min_backoff',
+    value   => "\"${influxdb::cluster_protobuf_min_backoff}\"",
+  }
+
+  ini_setting { 'cluster_protobuf_max_backoff':
+    section => 'cluster',
+    setting => 'protobuf_max_backoff',
+    value   => "\"${influxdb::cluster_protobuf_max_backoff}\"",
+  }
+
   ini_setting { 'cluster_write_buffer_size':
     section => 'cluster',
     setting => 'write-buffer-size',
@@ -97,10 +133,10 @@ class influxdb::config {
     value   => $influxdb::cluster_max_response_buffer_size,
   }
 
-  ini_setting { 'cluster_query_shard_buffer_size':
+  ini_setting { 'cluster_concurrent_shard_query_limit':
     section => 'cluster',
-    setting => 'query-shard-buffer-size',
-    value   => $influxdb::cluster_query_shard_buffer_size,
+    setting => 'concurrent-shard-query-limit',
+    value   => $influxdb::cluster_concurrent_shard_query_limit,
   }
 
   # [leveldb]
@@ -126,6 +162,12 @@ class influxdb::config {
     section => 'leveldb',
     setting => 'point-batch-size',
     value   => $influxdb::leveldb_point_batch_size,
+  }
+
+  ini_setting { 'leveldb_point_write_size':
+    section => 'leveldb',
+    setting => 'point-write-size',
+    value   => $influxdb::leveldb_point_write_size,
   }
 
   # [sharding]

@@ -23,6 +23,6 @@ Most of the configuration is parameterized, so you can freely adjust settings.
 
 ```
 bundle install
-bundle librarian-puppet install
+bundle exec librarian-puppet install
 vagrant up
 ```

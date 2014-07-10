@@ -1,6 +1,6 @@
 # influxdb
 
-[![Build Status](https://travis-ci.org/justindowning/puppet-influxdb.png)](https://travis-ci.org/justindowning/puppet-influxdb)
+[![Puppet Forge](http://img.shields.io/puppetforge/v/jdowning/influxdb.svg)](https://forge.puppetlabs.com/jdowning/influxdb) [![Build Status](https://travis-ci.org/justindowning/puppet-influxdb.png)](https://travis-ci.org/justindowning/puppet-influxdb)
 
 ## Description
 

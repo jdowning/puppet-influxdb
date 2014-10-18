@@ -3,6 +3,7 @@
 class influxdb::params {
   $ensure                               = 'installed'
   $version                              = 'latest'
+  $install_from_repository              = false
   $config_path                          = '/opt/influxdb/shared/config.toml'
 
   $hostname                             = $::hostname

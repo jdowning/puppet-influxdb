@@ -2,6 +2,7 @@
 class influxdb (
   $ensure                               = $influxdb::params::ensure,
   $version                              = $influxdb::params::version,
+  $install_from_repository              = $influxdb::params::install_from_repository,
   $config_path                          = $influxdb::params::config_path,
   $hostname                             = $influxdb::params::hostname,
   $bind_address                         = $influxdb::params::bind_address,

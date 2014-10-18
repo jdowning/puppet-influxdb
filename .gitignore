@@ -3,7 +3,6 @@ Gemfile.lock
 .librarian/
 .tmp/
 .vagrant
-modules/
+modules/**
 pkg/*
-spec/fixtures/manifests/
-spec/fixtures/modules/
+spec/fixtures/*

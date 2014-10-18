@@ -7,8 +7,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder ".", "/tmp/puppet-modules/influxdb", type: "rsync", rsync__exclude: ".git/"
 
   config.vm.define "centos", primary: true do |centos|
-    centos.vm.box     = 'centos64'
-    centos.vm.box_url = 'https://vagrantcloud.com/puppetlabs/boxes/centos-6.5-64-puppet/versions/3/providers/virtualbox.box'
+    centos.vm.box = "puppetlabs/centos-6.5-64-puppet"
     centos.vm.provision :puppet do |puppet|
       puppet.manifests_path = "tests"
       puppet.manifest_file  = "vagrant.pp"
@@ -17,8 +16,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "ubuntu", autostart: false do |ubuntu|
-    ubuntu.vm.box     = 'ubuntu64'
-    ubuntu.vm.box_url = 'https://vagrantcloud.com/puppetlabs/boxes/ubuntu-14.04-64-puppet/versions/3/providers/virtualbox.box'
+    ubuntu.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
     ubuntu.vm.provision :puppet do |puppet|
       puppet.manifests_path = "tests"
       puppet.manifest_file  = "vagrant.pp"

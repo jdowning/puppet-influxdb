@@ -2,7 +2,7 @@
 # DO NO CALL DIRECTLY
 class influxdb::install {
   package { 'influxdb':
-    ensure   => $influxdb::ensure,
+    ensure => $influxdb::ensure,
   }
   if !$influxdb::install_from_repository {
     # package source and provider
@@ -25,12 +25,12 @@ class influxdb::install {
         fail('Only supports Debian or RedHat $::osfamily')
       }
     }
-  
+
     # get the package
     staging::file { 'influxdb-package':
       source   => $package_source,
     }
-  
+
     # install the package
     Package['influxdb']{
       provider => $package_provider,

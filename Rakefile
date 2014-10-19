@@ -7,10 +7,9 @@ require 'puppet_blacksmith/rake_tasks'
 
 Rake::Task[:lint].clear
 PuppetLint::RakeTask.new :lint do |config|
-  config.ignore_paths = ["pkg/**/**/*.pp"]
+  config.ignore_paths = ["modules/**/**/*.pp","pkg/**/**/*.pp"]
   config.log_format = '%{path}:%{linenumber}:%{KIND}: %{message}'
-  config.disable_checks = [ "80chars" ]
+  config.disable_checks = [ "80chars", 'autoloader_layout', 'class_inherits_from_params_class']
 end
 
 task :default => [:spec, :lint]
-

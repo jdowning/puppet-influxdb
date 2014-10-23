@@ -3,18 +3,20 @@
 class influxdb::params {
   $ensure                               = 'installed'
   $version                              = 'latest'
-  $config_path                          = '/opt/influxdb/shared/config.toml'
+  $data_location                        = '/opt/influxdb'
+  
+  $config_path                          = "${data_location}/shared/config.toml"
 
   $hostname                             = $::hostname
   $bind_address                         = '0.0.0.0'
 
   # [logging]
   $logging_level                        = 'info'
-  $logging_file                         = '/opt/influxdb/shared/influxdb.log'
+  $logging_file                         = "${data_location}/shared/influxdb.log"
 
   # [admin]
   $admin_port                           = '8083'
-  $admin_assets                         = '/opt/influxdb/current/admin'
+  $admin_assets                         = "${data_location}/current/admin"
 
   # [api]
   $api_port                             = '8086'
@@ -24,11 +26,11 @@ class influxdb::params {
 
   # [raft]
   $raft_port                            = '8090'
-  $raft_dir                             = '/opt/influxdb/shared/data/raft'
+  $raft_dir                             = "${data_location}/shared/data/raft"
   $raft_election_timeout                = '1s'
 
   # [storage]
-  $storage_dir                          = '/opt/influxdb/shared/data/db'
+  $storage_dir                          = "${data_location}/shared/data/db"
   $storage_write_buffer_size            = '10000'
 
   # [cluster]
@@ -52,7 +54,7 @@ class influxdb::params {
   # [sharding]
 
   # [wal]
-  $wal_dir                              = '/opt/influxdb/shared/data/wal'
+  $wal_dir                              = "${data_location}/shared/data/wal"
   $wal_flush_after                      = '0'
   $wal_bookmark_after                   = '0'
   $wal_index_after                      = '1000'

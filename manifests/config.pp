@@ -7,6 +7,12 @@ class influxdb::config {
     default => present,
   }
 
+  ini_setting { 'reporting_disabled':
+    section => '',
+    setting => 'reporting-disabled',
+    value   => $influxdb::reporting_disabled,
+  }
+
   ini_setting { 'hostname':
     section => '',
     setting => 'hostname',

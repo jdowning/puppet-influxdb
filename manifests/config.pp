@@ -1,6 +1,12 @@
 # == Class: influxdb::config
 # More information on these settings available at: http://influxdb.org/docs/configuration.html
 class influxdb::config {
+  $admin_presence = $admin_port ? {
+    ""      => absent,
+    undef   => absent,
+    default => present,
+  }
+
   ini_setting { 'hostname':
     section => '',
     setting => 'hostname',
@@ -28,12 +34,14 @@ class influxdb::config {
 
   # [admin]
   ini_setting { 'admin_port':
+    ensure  => $admin_presence,
     section => 'admin',
     setting => 'port',
     value   => $influxdb::admin_port,
   }
 
   ini_setting { 'admin_assets':
+    ensure  => $admin_presence,
     section => 'admin',
     setting => 'assets',
     value   => "\"${influxdb::admin_assets}\"",

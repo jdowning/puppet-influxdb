@@ -29,7 +29,6 @@ class influxdb::install {
     # get the package
     staging::file { 'influxdb-package':
       source   => $package_source,
-      tries   => 3,
       timeout => 0,
     }
 

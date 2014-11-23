@@ -57,15 +57,6 @@ class influxdb::config {
   $input_plugins_to_disable = difference($input_plugins_available, $influxdb::input_plugins_enabled)
   $input_plugins_to_enable = intersection($input_plugins_available,  $influxdb::input_plugins_enabled)
 
-  define input_plugin($enabled = true) {
-    $plugin = $title
-    ini_setting { "${plugin}_enabled":
-      section => "input_plugins.${plugin}",
-      setting => 'enabled',
-      value   => $enabled
-    }
-  }
-
   input_plugin { $input_plugins_to_disable:
     enabled => false
   }

@@ -22,6 +22,7 @@ class influxdb::params {
   $api_read_timeout                     = '5s'
 
   # [input_plugins]
+  $input_plugins_enabled                = []
 
   # [raft]
   $raft_port                            = '8090'

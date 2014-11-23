@@ -17,6 +17,7 @@ class influxdb (
   $raft_election_timeout                = $influxdb::params::raft_election_timeout,
   $storage_dir                          = $influxdb::params::storage_dir,
   $storage_write_buffer_size            = $influxdb::params::storage_write_buffer_size,
+  $input_plugins_enabled                = $influxdb::params::input_plugins_enabled,
   $cluster_seed_servers                 = $influxdb::params::cluster_seed_servers,
   $cluster_protobuf_port                = $influxdb::params::cluster_protobuf_port,
   $cluster_protobuf_timeout             = $influxdb::params::cluster_protobuf_timeout,

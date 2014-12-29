@@ -1,17 +1,16 @@
 # influxdb
 
-[![Puppet Forge](http://img.shields.io/puppetforge/v/jdowning/influxdb.svg)](https://forge.puppetlabs.com/jdowning/influxdb) [![Build Status](https://travis-ci.org/justindowning/puppet-influxdb.png)](https://travis-ci.org/justindowning/puppet-influxdb)
+[![Build Status](https://travis-ci.org/rplessl/puppet-influxdb.png)](https://travis-ci.org/rplessl/puppet-influxdb)
 
 ## Description
 
-This Puppet module will install [influxdb](https://influxdb.org) on Debian or RedHat.
+puppet module to install and configure [influxdb](https://influxdb.org).
 
-This module is still under active development so things are likely to change. If
-you have any ideas or contributions, feel free to open a pull request!
+This module bases on the module of [puppet-influx module of justin downing](https://github.com/justindowning/puppet-influxdb).
 
 ## Installation
 
-`puppet module install --modulepath /path/to/puppet/modules jdowning-influxdb`
+`puppet module install --modulepath /path/to/puppet/modules rplessl-influxdb`
 
 ## Usage
 

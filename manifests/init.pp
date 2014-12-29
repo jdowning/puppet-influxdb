@@ -2,7 +2,7 @@
 class influxdb (
   $ensure                   = $influxdb::params::ensure,
   $version                  = $influxdb::params::version,
-  $install_from_repository  = $influxdb::params::$install_from_repository,
+  $install_from_repository  = $influxdb::params::install_from_repository,
   $config_path              = $influxdb::params::config_path,
   $reporting_disabled       = $influxdb::params::reporting_disabled,
   $logging_level            = $influxdb::params::logging_level,

@@ -20,7 +20,7 @@ class influxdb::install {
     }
   }
 
-  if ((!$influxdb::install_from_repository) and ($my_package_ensure == 'present')) {
+  if ((!$influxdb::install_from_repository) and ($my_package_ensure =~ /present|installed/ )) {
     # package source and provider
     case $::osfamily {
       'Debian': {
@@ -29,10 +29,21 @@ class influxdb::install {
           default => "influxdb_${influxdb::version}_i386.deb",
         }
         $package_source = "http://s3.amazonaws.com/influxdb/$package_source_name"
-        exec { "influxdb.deb":
-          command => "wget --quiet --output-document=- $package_source | dpkg --install -",
-          path    => ['/bin', '/usr/bin'],
-          unless  => 'rpm -qa | grep influxdb',
+        exec {
+          "influxdb_wget":
+            command => "wget ${package_source} -O /tmp/${package_source_name}",
+            path    => ['/bin', '/usr/bin'],
+            unless  => 'dpkg --list | grep influxdb';
+
+          "influxdb_dpkg":
+            command => "sudo dpkg -i /tmp/${package_source_name}",
+            path    => ['/bin', '/usr/bin'],
+            require => [ Exec["influxdb_wget"] ];
+
+          "influxdb_rm":
+            command => "rm /tmp/${package_source_name}",
+            path    => ['/bin', '/usr/bin'],
+            require => [ Exec["influxdb_dpkg"] ];
         }
       }
       'RedHat', 'Amazon': {
@@ -42,7 +53,7 @@ class influxdb::install {
         }
         $package_source = "http://s3.amazonaws.com/influxdb/$package_source_name"
         exec { "influxdb.rpm":
-          command => "rpm -ivh $package_source",
+          command => "sudo rpm -ivh $package_source",
           path    => ['/bin', '/usr/bin'],
           unless  => 'rpm -qa | grep influxdb',
         }
@@ -55,7 +66,6 @@ class influxdb::install {
 
   # install / purge the package
   package { 'influxdb':
-     ensure => $my_package_ensure,
-  }
-
+    ensure => $my_package_ensure,
+  } 
 }

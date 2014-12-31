@@ -23,7 +23,7 @@ Most of the configuration is parameterized, so you can freely adjust settings.
 Install and setup vagrant (link)[https://docs.vagrantup.com/v2/installation/index.html]
 
 Add virtual machines
-```
+```ShellSession
 vagrant box add puppetlabs/centos-6.5-64-puppet   --insecure
 vagrant box add puppetlabs/centos-7.0-64-puppet   --insecure
 vagrant box add puppetlabs/ubuntu-14.04-64-puppet --insecure
@@ -31,11 +31,11 @@ vagrant box add puppetlabs/debian-7.6-64-puppet   --insecure
 ```
 
 Add vagrant puppet support
-```
+```ShellSession
 vagrant plugin install vagrant-librarian-puppet
 ```
 
 Run Tests
-```
+```ShellSession
 vagrant up
 ```

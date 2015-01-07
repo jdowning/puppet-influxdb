@@ -12,7 +12,7 @@ class influxdb::params {
   # [logging]
   $logging_level                        = 'info'
   $logging_file                         = '/opt/influxdb/shared/influxdb.log'
- 
+
   # [cluster]
   $cluster_seed_servers                 = '[]'
 }

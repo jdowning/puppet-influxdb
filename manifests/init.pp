@@ -12,5 +12,6 @@ class influxdb (
 
   class { 'influxdb::install': } ->
   class { 'influxdb::config': }  ~>
-  class { 'influxdb::service': }
+  class { 'influxdb::service': } ->
+  Class['influxdb']
 }

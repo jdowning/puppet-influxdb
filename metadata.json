@@ -8,7 +8,6 @@
   "description": "Setup and manage influxdb",
   "project_page": "https://github.com/rplessl/puppet-influxdb",
   "dependencies": [
-    { "name": "nanliu/staging", "version_requirement": ">= 0.4.0" },
     { "name": "puppetlabs/inifile", "version_requirement": ">= 1.0.0" }
   ],
   "operatingsystem_support": [

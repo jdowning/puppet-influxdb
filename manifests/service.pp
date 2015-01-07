@@ -5,6 +5,5 @@ class influxdb::service {
     ensure     => running,
     enable     => true,
     hasrestart => true,
-    require    => Package['influxdb'],
   }
 }

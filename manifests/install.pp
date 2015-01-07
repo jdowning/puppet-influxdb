@@ -33,7 +33,7 @@ class influxdb::install {
           'influxdb_wget':
             command => "wget ${package_source} -O /tmp/${package_source_name}",
             path    => ['/bin', '/usr/bin'],
-            unless  => 'dpkg --list influxdb',
+            unless  => 'dpkg --list influxdb';
 
           'influxdb_dpkg':
             command => "dpkg -i /tmp/${package_source_name}",

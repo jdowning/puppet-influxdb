@@ -39,11 +39,10 @@ vagrant box add puppetlabs/debian-7.6-64-puppet   https://vagrantcloud.com/puppe
 ```
 
 Add vagrant puppet support
-```ShellSession
-vagrant plugin install vagrant-librarian-puppet
-```
 
 Run Tests
 ```ShellSession
+bundle install
+bundle exec librarian-puppet install
 vagrant up
 ```

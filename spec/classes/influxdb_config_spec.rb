@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'influxdb::config' :type => :class do
+describe 'influxdb::config', :type => :class do
 
   it { should create_class('influxdb::config') }
 

@@ -13,15 +13,19 @@ describe 'influxdb::config', :type => :class do
       }'
     }
 
-    it {
-      should contain_file('/opt/influxdb/shared/config.toml').with({
-        :mode   => '0644',
-        :owner  => 'influxdb',
-        :group  => 'influxdb'
-      } )
+    context "on Debian based machines" do
+      let (:facts) { { :osfamily => 'Debian' } }
 
-      should contain_file('/opt/influxdb/shared/config.toml').with_content(/^bind-address/)
-      should contain_file('/opt/influxdb/shared/config.toml').with_content(/^file\s=\s\/opt\/influxdb\/shared\/influxdb.log/)
-    }
+      it {
+        should contain_file('/opt/influxdb/shared/config.toml').with({
+          :mode   => '0644',
+          :owner  => 'influxdb',
+          :group  => 'influxdb'
+        } )
+
+        should contain_file('/opt/influxdb/shared/config.toml').with_content(/^bind-address/)
+        should contain_file('/opt/influxdb/shared/config.toml').with_content(/^file\s=\s\/opt\/influxdb\/shared\/influxdb.log/)
+      }
+    end
   end
 end

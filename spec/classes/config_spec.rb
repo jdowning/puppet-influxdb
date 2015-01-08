@@ -6,7 +6,7 @@ describe 'influxdb::config' do
     let(:pre_condition) {
       "class{'influxdb' :
         install_from_repository => true,
-        config_path => '/opt/influxdb/shared/config.toml'
+        config_path => '/opt/influxdb/shared/config.toml',
         log_file => '/opt/influxdb/shared/influxdb.log'
       }"
     }

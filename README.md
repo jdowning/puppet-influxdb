@@ -41,9 +41,12 @@ Install and setup vagrant [https://docs.vagrantup.com/v2/installation/index.html
 
 Fetch virtual machines:
 ```ShellSession
+vagrant box add puppetlabs/ubuntu-14.04-64-puppet --insecure
 vagrant box add puppetlabs/centos-6.5-64-puppet   --insecure
 vagrant box add puppetlabs/centos-7.0-64-puppet   --insecure
-vagrant box add puppetlabs/ubuntu-14.04-64-puppet --insecure
+```
+Debian 7 vagrant image has a virtualbox mounting issue: (to be fixed)
+```ShellSession
 vagrant box add puppetlabs/debian-7.6-64-puppet   --insecure
 ```
 

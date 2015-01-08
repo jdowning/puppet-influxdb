@@ -1,10 +1,16 @@
 require 'spec_helper'
 
-describe 'influxdb::install' do
-  # default params case
+describe 'influxdb::install', :type => :class do
+
+  it { should create_class('influxdb::install') }
+  it { should contain_package('influxdb') }
+
   context 'installing from a repository' do
     let(:pre_condition) {
-      'include influxdb'
+      'class{"influxdb":
+        ensure => "installed",
+        install_from_repository => true,
+      }'
     }
     context 'on debian' do
       let(:facts) {
@@ -13,7 +19,6 @@ describe 'influxdb::install' do
           :architecture => 'x86_64',
         }
       }
-
       it { should contain_package('influxdb').with(
         :ensure   => 'installed',
       )}
@@ -25,15 +30,16 @@ describe 'influxdb::install' do
           :architecture => 'x86_64',
         }
       }
-
       it { should contain_package('influxdb').with(
         :ensure   => 'installed',
       )}
     end
   end
+
   context 'installing from weburl' do
     let(:pre_condition) {
       'class{"influxdb":
+        ensure => "installed",
         install_from_repository => false,
       }'
     }
@@ -44,7 +50,6 @@ describe 'influxdb::install' do
           :architecture => 'x86_64',
         }
       }
-
       it {
         should contain_file('/opt/influxdb/versions/influxdb_from_web')
       }
@@ -56,10 +61,12 @@ describe 'influxdb::install' do
           :architecture => 'x86_64',
         }
       }
-
       it {
         should contain_file('/opt/influxdb/versions/influxdb_from_web')
       }
     end
   end
+
+  it { should contain_file('/opt/influxdb').with('ensure' => 'directory') }
+
 end

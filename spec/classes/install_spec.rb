@@ -50,7 +50,7 @@ describe 'influxdb::install' do
       it {
         should contain_file('/opt/influxdb/versions/influxdb_from_web')
       }
-    }
+    end
     context 'on redhat' do
       let(:facts) {
         {
@@ -64,5 +64,4 @@ describe 'influxdb::install' do
       }
     end
   end
-
 end

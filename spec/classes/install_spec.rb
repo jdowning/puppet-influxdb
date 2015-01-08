@@ -5,7 +5,7 @@ describe 'influxdb::install' do
   context 'installing from a repository' do
     let(:pre_condition) {
       'class{"influxdb":
-         install_from_repository => true,
+        install_from_repository => true,
       }'
     }
     context 'on debian' do
@@ -36,7 +36,7 @@ describe 'influxdb::install' do
   context 'installing from weburl' do
     let(:pre_condition) {
       'class{"influxdb":
-         install_from_repository => false,
+        install_from_repository => false,
       }'
     }
     context 'on debian' do

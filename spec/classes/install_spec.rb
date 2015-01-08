@@ -4,9 +4,7 @@ describe 'influxdb::install' do
   # default params case
   context 'installing from a repository' do
     let(:pre_condition) {
-      'class{"influxdb":
-        install_from_repository => true,
-      }'
+      'include influxdb'
     }
     context 'on debian' do
       let(:facts) {

@@ -7,7 +7,7 @@ describe 'influxdb::config' do
       "class{'influxdb' :
         install_from_repository => true,
         config_path => '/opt/influxdb/shared/config.toml',
-        log_file => '/opt/influxdb/shared/influxdb.log'
+        logging_file => '/opt/influxdb/shared/influxdb.log'
       }"
     }
 

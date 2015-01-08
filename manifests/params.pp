@@ -6,7 +6,7 @@ class influxdb::params {
   $install_from_repository              = true
   $config_path                          = '/opt/influxdb/shared/config.toml'
 
-  # general section oof config.toml
+  # general section of config.toml
   $reporting_disabled                   = false
 
   # [logging]

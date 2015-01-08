@@ -4,6 +4,6 @@ class influxdb::service {
   service { 'influxdb':
     ensure     => running,
     enable     => true,
-    hasrestart => true,
+    hasrestart => true;
   }
 }

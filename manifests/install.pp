@@ -37,7 +37,7 @@ class influxdb::install {
 
           'influxdb_dpkg':
             command => "dpkg -i /tmp/${package_source_name}",
-            path    => ['/bin', '/usr/bin'],
+            path    => ['/bin', '/sbin', '/usr/bin'],
             require => [ Exec['influxdb_wget'] ];
 
           'influxdb_rm':
@@ -45,6 +45,10 @@ class influxdb::install {
             path    => ['/bin', '/usr/bin'],
             require => [ Exec['influxdb_dpkg'] ];
 
+          'influxdb_from_web':
+            command => "echo Installed ${package_source_name} on `date --rfc-2822` > /opt/influxdb/versions/influxdb_from_web",
+            path    => ['/bin', '/usr/bin'],
+            require => [ Exec['influxdb_dpkg'] ];
         }
       }
       'RedHat', 'Amazon': {
@@ -53,10 +57,16 @@ class influxdb::install {
           default => "influxdb-${influxdb::version}-1.i686.rpm",
         }
         $package_source = "http://s3.amazonaws.com/influxdb/${package_source_name}"
-        exec { 'influxdb.rpm':
-          command => "rpm -ivh ${package_source}",
-          path    => ['/bin', '/usr/bin'],
-          unless  => 'rpm -qa influxdb',
+        exec {
+          'influxdb_rpm':
+            command => "rpm -ivh ${package_source}",
+            path    => ['/bin', '/usr/bin'],
+            unless  => 'rpm -qa | grep influxdb';
+
+          'influxdb_from_web':
+            command => "echo Installed ${package_source_name} on `date --rfc-2822` > /opt/influxdb/versions/influxdb_from_web",
+            path    => ['/bin', '/usr/bin'],
+            require => [ Exec['influxdb_rpm'] ];
         }
       }
       default: {

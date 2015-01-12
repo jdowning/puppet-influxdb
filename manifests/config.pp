@@ -11,10 +11,10 @@ class influxdb::config {
   }
 
   # specific changes
-  ini_setting { 'reporting_disabled':
+  ini_setting { 'reporting-disabled':
     section => '',
-    setting => 'reporting_disabled',
-    value   => "\"${influxdb::logging_level}\"",
+    setting => 'reporting-disabled',
+    value   => "\"${influxdb::reporting_disabled}\"",
   }
 
   # [logging]
@@ -34,7 +34,7 @@ class influxdb::config {
   ini_setting { 'cluster_seed_servers':
     section => 'cluster',
     setting => 'seed-servers',
-    value   => $influxdb::cluster_seed_servers,
+    value   => "\"$influxdb::cluster_seed_servers\"",
   }
 
 }

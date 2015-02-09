@@ -3,8 +3,8 @@
 # If hostname (on the OS) doesn't return a name that can be resolved by the other
 # systems in the cluster, you'll have to set the hostname to an IP or something
 # that can be resolved here.
-hostname = "<%= @hostname %>"
-bind-address = "<% @bind_address %>"
+hostname = "<%= scope.lookupvar('::hostname') %>"
+bind-address = "<%= scope.lookupvar('influxdb::bind_address') %>"
 
 # Once every 24 hours InfluxDB will report anonymous data to m.influxdb.com
 # The data includes raft name (random 8 bytes), os, arch and version
@@ -12,7 +12,7 @@ bind-address = "<% @bind_address %>"
 # to track the number of instances running and the versions which
 # is very helpful for us.
 # Change this option to true to disable reporting.
-reporting-disabled = <%= @reporting_disabled %>
+reporting-disabled = <%= scope.lookupvar('influxdb::reporting_disabled') %>
 
 # Control authentication
 # If not set authetication is DISABLED. Be sure to explicitly set this flag to
@@ -20,45 +20,45 @@ reporting-disabled = <%= @reporting_disabled %>
 # user exists in the system, the system will allow one administrative user to be
 # created without requiring any authentication.
 [authentication]
-enabled = <%= @authentication_enabled %>
+enabled = <%= scope.lookupvar('influxdb::authentication_enabled') %>
 
 [logging]
 # logging level can be one of "fine", "debug", "info", "warn" or "error"
-level = "<%= @logging_level %>"
-file  =  "<%= @logging_file %>"  # stdout to log to standard out, or syslog facility
+level = "<%= scope.lookupvar('influxdb::logging_level') %>"
+file  =  "<%= scope.lookupvar('influxdb::logging_file') %>"  # stdout to log to standard out, or syslog facility
 
 # Configure the admin server
 [admin]
-port = <%= @admin_port %>  # binding is disabled if the port isn't set
+port = <%= scope.lookupvar('influxdb::admin_port') %>  # binding is disabled if the port isn't set
 
 # Configure the http api
 [api]
-port = <%= @api_port %>  # binding is disabled if the node is not a Data node.
+port = <%= scope.lookupvar('influxdb::api_port') %>  # binding is disabled if the node is not a Data node.
 # ssl-port = 8084    # SSL support is enabled if you set a port and cert
 # ssl-cert = "/path/to/cert.pem"
 
 # connections will timeout after this amount of time. Ensures that clients that misbehave
 # and keep alive connections they don't use won't end up connection a million times.
 # However, if a request is taking longer than this to complete, could be a problem.
-read-timeout = "<%= @api_read_timeout %>"
+read-timeout = "<%= scope.lookupvar('influxdb::api_read_timeout') %>"
 
 [input_plugins]
-<%- if @input_plugins_collected -%>
+<%- if scope.lookupvar('influxdb::input_plugins_collected') -%>
   [input_plugins.collectd]
-  enabled = <%= @input_plugins_collectd %>
-  address = "<%= @input_plugins_collectd_address %>"
-  port = <%= @input_plugins_collectd_port %>
-  database = <%= @input_plugins_collectd_database %>
+  enabled = true
+  address = "<%= scope.lookupvar('influxdb::input_plugins_collectd_address') %>"
+  port = <%= scope.lookupvar('influxdb::input_plugins_collectd_port') %>
+  database = "<%= scope.lookupvar('influxdb::input_plugins_collectd_database') %>"
   # types.db can be found in a collectd installation or on github:
   # https://github.com/collectd/collectd/blob/master/src/types.db
-  typesdb = <%= @input_plugins_collectd_typesdb %> # The path to the collectd types.db file
+  typesdb = <%= scope.lookupvar('influxdb::input_plugins_collectd_typesdb') %> # The path to the collectd types.db file
 <% end -%>
 
-<% if @input_plugins_udp -%>
+<% if scope.lookupvar('influxdb::input_plugins_udp') -%>
   [input_plugins.udp]
-  enabled = <%= @input_plugins_udp %>
-  port = <%= @input_plugins_udp_port %>
-  database = <%= @input_plugins_udp_database %>
+  enabled = true
+  port = <%= scope.lookupvar('influxdb::input_plugins_udp_port') %>
+  database = "<%= scope.lookupvar('influxdb::input_plugins_udp_database') %>"
 
   # Configure multiple udp apis each can write to separate db.  Just
   # repeat the following section to enable multiple udp apis on
@@ -69,90 +69,90 @@ read-timeout = "<%= @api_read_timeout %>"
   # database = "db1"
 <% end -%>
 
-<% if @input_plugins_graphite -%>
+<% if scope.lookupvar('influxdb::input_plugins_graphite') -%>
 [[graphite]] # 1 or more of these sections may be present.
-enabled = <% @input_plugins_graphite %>
-protocol = <% @input_plugins_graphite_protocol %>
-address = "<%= @input_plugins_graphite_address %>"
-port = <%= @input_plugins_graphite_port %>
-database = <%= @input_plugins_graphite_database %>
+enabled = true
+protocol = "<%= scope.lookupvar('influxdb::input_plugins_graphite_protocol') %>"
+address = "<%= scope.lookupvar('influxdb::input_plugins_graphite_address') %>"
+port = <%= scope.lookupvar('influxdb::input_plugins_graphite_port') %>
+database = "<%= scope.lookupvar('influxdb::input_plugins_graphite_database') %>"
 <% end -%>
 
 # Raft configuration
 [raft]
 # The raft port should be open between all servers in a cluster.
 # However, this port shouldn't be accessible from the internet.
-port = <%= @raft_port %> # Binding is disabled if node is not a Broker.
+port = <%= scope.lookupvar('influxdb::raft_port') %> # Binding is disabled if node is not a Broker.
 
 # Where the raft logs are stored. The user running InfluxDB will need read/write access.
-dir = "<%= @raft_dir %>"
+dir = "<%= scope.lookupvar('influxdb::raft_dir') %>"
 
-debug = <%= @raft_debug %>
+debug = <%= scope.lookupvar('influxdb::raft_debug') %>
 election-timeout = "<%= @raft_election_timeout %>"
 
 [storage]
-dir =  "<%= @storage_dir %>"
+dir =  "<%= scope.lookupvar('influxdb::storage_dir') %>"
 # How many requests to potentially buffer in memory. If the buffer gets filled then writes
 # will still be logged and once the local storage has caught up (or compacted) the writes
 # will be replayed from the WAL
-write-buffer-size = <%= @storage_write_buffer_size %>
+write-buffer-size = <%= scope.lookupvar('influxdb::storage_write_buffer_size') %>
 
 # The default setting on this is 0, which means unlimited. Set this to something if you want to
 # limit the max number of open files. max-open-files is per shard so this * that will be max.
-max-open-shards = <%= @storage_max_open_shards %>
+max-open-shards = <%= scope.lookupvar('influxdb::storage_max_open_shards') %>
 
 # The default setting is 100. This option tells how many points will be fetched from LevelDb before
 # they get flushed into backend.
-point-batch-size = <%= @storage_point_batch_size %>
+point-batch-size = <%= scope.lookupvar('influxdb::storage_point_batch_size') %>
 
 # The number of points to batch in memory before writing them to leveldb. Lowering this number will
 # reduce the memory usage, but will result in slower writes.
-write-batch-size = <%= @storage_write_batch_size %>
+write-batch-size = <%= scope.lookupvar('influxdb::storage_write_batch_size') %>
 
 # The server will check this often for shards that have expired that should be cleared.
-retention-sweep-period = "<%= @storage_retention_sweep_period %>"
+retention-sweep-period = "<%= scope.lookupvar('influxdb::storage_retention_sweep_period') %>"
 
 [cluster]
 
 # Location for cluster state storage. For storing state persistently across restarts.
-dir = "<%= @cluster_dir %>"
+dir = "<%= scope.lookupvar('influxdb::cluster_dir') %>"
 # Replication happens over a TCP connection with a Protobuf protocol.
 # This port should be reachable between all servers in a cluster.
 # However, this port shouldn't be accessible from the internet.
 
-protobuf_port = <%= @cluster_protobuf_port %>
-protobuf_timeout = "<%= @cluster_protobuf_timeout %>" # the write timeout on the protobuf conn any duration parseable by time.ParseDuration
-protobuf_heartbeat = "<%= @cluster_protobuf_heartbeat %>" # the heartbeat interval between the servers. must be parseable by time.ParseDuration
-protobuf_min_backoff = "<%= @cluster_protobuf_min_backoff %>" # the minimum backoff after a failed heartbeat attempt
-protobuf_max_backoff = "<%= @cluster_protobuf_max_backoff %>" # the maxmimum backoff after a failed heartbeat attempt
+protobuf_port = <%= scope.lookupvar('influxdb::cluster_protobuf_port') %>
+protobuf_timeout = "<%= scope.lookupvar('influxdb::cluster_protobuf_timeout') %>" # the write timeout on the protobuf conn any duration parseable by time.ParseDuration
+protobuf_heartbeat = "<%= scope.lookupvar('influxdb::cluster_protobuf_heartbeat') %>" # the heartbeat interval between the servers. must be parseable by time.ParseDuration
+protobuf_min_backoff = "<%= scope.lookupvar('influxdb::cluster_protobuf_min_backoff') %>" # the minimum backoff after a failed heartbeat attempt
+protobuf_max_backoff = "<%= scope.lookupvar('influxdb::cluster_protobuf_max_backoff') %>" # the maxmimum backoff after a failed heartbeat attempt
 
 # How many write requests to potentially buffer in memory per server. If the buffer gets filled then writes
 # will still be logged and once the server has caught up (or come back online) the writes
 # will be replayed from the WAL
-write-buffer-size = <%= @cluster_write_buffer_size %>
+write-buffer-size = <%= scope.lookupvar('influxdb::cluster_write_buffer_size') %>
 
 # the maximum number of responses to buffer from remote nodes, if the
 # expected number of responses exceed this number then querying will
 # happen sequentially and the buffer size will be limited to this
 # number
-max-response-buffer-size = <%= @cluster_max_response_buffer_size %>
+max-response-buffer-size = <%= scope.lookupvar('influxdb::cluster_max_response_buffer_size') %>
 
 # When queries get distributed out to shards, they go in parallel. This means that results can get buffered
 # in memory since results will come in any order, but have to be processed in the correct time order.
 # Setting this higher will give better performance, but you'll need more memory. Setting this to 1 will ensure
 # that you don't need to buffer in memory, but you won't get the best performance.
-concurrent-shard-query-limit = <%= @cluster_concurrent_shard_query_limit %>
+concurrent-shard-query-limit = <%= scope.lookupvar('influxdb::cluster_concurrent_shard_query_limit') %>
 
 [wal]
 
-dir = "<%= @wal_dir %>"
-flush-after = <%= @wal_flush_after %> # the number of writes after which wal will be flushed, 0 for flushing on every write
-bookmark-after = <%= @wal_bookmark_after %> # the number of writes after which a bookmark will be created
+dir = "<%= scope.lookupvar('influxdb::wal_dir') %>"
+flush-after = <%= scope.lookupvar('influxdb::wal_flush_after') %> # the number of writes after which wal will be flushed, 0 for flushing on every write
+bookmark-after = <%= scope.lookupvar('influxdb::wal_bookmark_after') %> # the number of writes after which a bookmark will be created
 
 # the number of writes after which an index entry is created pointing
 # to the offset of the first request, default to 1k
-index-after = <%= @wal_index_after %>
+index-after = <%= scope.lookupvar('influxdb::wal_index_after') %>
 
 # the number of requests per one log file, if new requests came in a
 # new log file will be created
-requests-per-logfile = <%= @wal_requests_per_logfile %>
+requests-per-logfile = <%= scope.lookupvar('influxdb::wal_requests_per_logfile') %>

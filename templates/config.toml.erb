@@ -70,7 +70,7 @@ read-timeout = "<%= scope.lookupvar('influxdb::api_read_timeout') %>"
 <% end -%>
 
 <% if scope.lookupvar('influxdb::input_plugins_graphite') -%>
-[[graphite]] # 1 or more of these sections may be present.
+[input_plugins.graphite] # 1 or more of these sections may be present.
 enabled = true
 protocol = "<%= scope.lookupvar('influxdb::input_plugins_graphite_protocol') %>"
 address = "<%= scope.lookupvar('influxdb::input_plugins_graphite_address') %>"

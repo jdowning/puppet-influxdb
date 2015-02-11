@@ -4,6 +4,7 @@ class influxdb::service {
   service { 'influxdb':
     ensure     => running,
     enable     => true,
-    hasrestart => true;
+    hasrestart => true,
+    status     => '/usr/bin/pgrep -u influxdb -f "/usr/bin/influxdb "'
   }
 }

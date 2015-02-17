@@ -10,8 +10,10 @@ define influxdb::database($ensure = present) {
       command => "curl -X POST '${root}/db?u=root&p=root' -d '{\"name\": \"${name}\"}'",
       user    => 'root',
       path    => ['/usr/bin', '/bin'],
-      unless  => "curl -X GET '${root}/db?u=root&p=root' | grep ${name}",
-      require => [Package['curl'], Service['influxdb']]
+      unless  => ['service influxdb status | grep FAILED',
+                    "curl -X GET '${root}/db?u=root&p=root' | grep ${name}"],
+      require => [Package['curl'], Service['influxdb']],
+      returns => ['0','7']
     }
   }
 
@@ -20,7 +22,8 @@ define influxdb::database($ensure = present) {
       command => "curl -X DELETE '${root}/db/${name}?u=root&p=root'",
       user    => 'root',
       path    => ['/usr/bin', '/bin'],
-      onlyif  => "curl -X GET '${root}/db?u=root&p=root' | grep ${name}",
+      onlyif  => ['service influxdb status | grep OK',
+                    "curl -X GET '${root}/db?u=root&p=root' | grep ${name}"],
       require => [Package['curl'], Service['influxdb']]
     }
   }

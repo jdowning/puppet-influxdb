@@ -11,7 +11,7 @@ class influxdb::root($curr_pass = 'root', $next_pass = undef) {
     user    => 'root',
     path    => ['/bin/','/usr/bin','/usr/sbin/'],
     onlyif  => ['service influxdb status | grep OK',
-                  "curl -X GET '${root}/db?u=root&p=${curr_pass}'"],
+                  "curl -X GET '${root}/db?u=root&p=${curr_pass}' | grep Invalid"],
     require => [Package['curl'], Service['influxdb']]
   }
 

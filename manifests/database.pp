@@ -1,29 +1,26 @@
 # Databases management
-define influxdb::database($ensure = present) {
-
-  $root = 'http://localhost:8086'
-
-  ensure_resource('package','curl',{ensure => present})
+define influxdb::database(
+  $ensure = present,
+  $pass = 'root'
+) {
 
   if($ensure == 'present'){
+    $db_exists = "curl \"${api::base}/db?u=root&p=${pass}\" | grep ${name}"
     exec{"create ${name}":
-      command => "curl -X POST '${root}/db?u=root&p=root' -d '{\"name\": \"${name}\"}'",
+      command => "${api::post} '${api::base}/db?u=root&p=${pass}' -d '{\"name\": \"${name}\"}' | grep 200",
       user    => 'root',
       path    => ['/usr/bin', '/bin'],
-      unless  => ['service influxdb status | grep FAILED',
-                    "curl -X GET '${root}/db?u=root&p=root' | grep ${name}"],
+      onlyif  => [$api::port_open, "echo '! $db_exists' | bash"],
       require => [Package['curl'], Service['influxdb']],
-      returns => ['0','7']
     }
   }
 
   if($ensure == 'absent'){
     exec{"create ${name}":
-      command => "curl -X DELETE '${root}/db/${name}?u=root&p=root'",
+      command => "${api::delete} '${api::base}/db/${name}?u=root&p=${pass}' | grep 200",
       user    => 'root',
       path    => ['/usr/bin', '/bin'],
-      onlyif  => ['service influxdb status | grep OK',
-                    "curl -X GET '${root}/db?u=root&p=root' | grep ${name}"],
+      onlyif  => [$api::port_open, "${api::get} '${api::base}/db?u=root&p=${pass}' | grep ${name}"],
       require => [Package['curl'], Service['influxdb']]
     }
   }

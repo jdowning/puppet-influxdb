@@ -41,5 +41,6 @@ class influxdb (
   class { 'influxdb::config': }
   class { 'influxdb::install': }
   class { 'influxdb::service': }
+  include influxdb::api
 
 }

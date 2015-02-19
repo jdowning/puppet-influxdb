@@ -70,12 +70,12 @@ read-timeout = "<%= @api_read_timeout %>"
 <% end -%>
 
 <% if @input_plugins_graphite -%>
-[[graphite]] # 1 or more of these sections may be present.
-enabled = <% @input_plugins_graphite %>
-protocol = <% @input_plugins_graphite_protocol %>
-address = "<%= @input_plugins_graphite_address %>"
-port = <%= @input_plugins_graphite_port %>
-database = "<%= @input_plugins_graphite_database %>"
+  [input_plugins.graphite] # 1 or more of these sections may be present.
+  enabled = <%= @input_plugins_graphite %>
+  protocol = "<%= @input_plugins_graphite_protocol %>"
+  address = "<%= @input_plugins_graphite_address %>"
+  port = <%= @input_plugins_graphite_port %>
+  database = "<%= @input_plugins_graphite_database %>"
 <% end -%>
 
 # Raft configuration

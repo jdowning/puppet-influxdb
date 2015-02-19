@@ -43,12 +43,12 @@ port = <%= @api_port %>  # binding is disabled if the node is not a Data node.
 read-timeout = "<%= @api_read_timeout %>"
 
 [input_plugins]
-<%- if @input_plugins_collected -%>
+<%- if @input_plugins_collectd -%>
   [input_plugins.collectd]
   enabled = <%= @input_plugins_collectd %>
   address = "<%= @input_plugins_collectd_address %>"
   port = <%= @input_plugins_collectd_port %>
-  database = <%= @input_plugins_collectd_database %>
+  database = "<%= @input_plugins_collectd_database %>"
   # types.db can be found in a collectd installation or on github:
   # https://github.com/collectd/collectd/blob/master/src/types.db
   typesdb = <%= @input_plugins_collectd_typesdb %> # The path to the collectd types.db file
@@ -58,7 +58,7 @@ read-timeout = "<%= @api_read_timeout %>"
   [input_plugins.udp]
   enabled = <%= @input_plugins_udp %>
   port = <%= @input_plugins_udp_port %>
-  database = <%= @input_plugins_udp_database %>
+  database = "<%= @input_plugins_udp_database %>"
 
   # Configure multiple udp apis each can write to separate db.  Just
   # repeat the following section to enable multiple udp apis on
@@ -75,7 +75,7 @@ enabled = <% @input_plugins_graphite %>
 protocol = <% @input_plugins_graphite_protocol %>
 address = "<%= @input_plugins_graphite_address %>"
 port = <%= @input_plugins_graphite_port %>
-database = <%= @input_plugins_graphite_database %>
+database = "<%= @input_plugins_graphite_database %>"
 <% end -%>
 
 # Raft configuration

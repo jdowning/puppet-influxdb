@@ -1,0 +1,34 @@
+[input_plugins]
+
+  # Configure the graphite api
+  [input_plugins.graphite]
+  enabled = false
+  # address = "0.0.0.0" # If not set, is actually set to bind-address.
+  # port = 2003
+  # database = ""  # store graphite data in this database
+  # udp_enabled = true # enable udp interface on the same port as the tcp interface
+
+  # Configure the collectd api
+  [input_plugins.collectd]
+  enabled = <%= @collectd_enabled %>
+  <% if @collectd_enabled %>
+   address = "<%= @collectd_address %>"
+   port = <%= @collectd_port %>
+   database = "<%= @collectd_database %>"
+   typesdb = "<%= @collectd_typesdb %>"
+  <% end %>
+  # Configure the udp api
+  [input_plugins.udp]
+  enabled = false
+  # port = 4444
+  # database = ""
+
+  # Configure multiple udp apis each can write to separate db.  Just
+  # repeat the following section to enable multiple udp apis on
+  # different ports.
+  [[input_plugins.udp_servers]] # array of tables
+  enabled = false
+  # port = 5551
+  # database = "db1"
+
+

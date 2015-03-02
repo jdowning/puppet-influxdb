@@ -55,6 +55,8 @@ class influxdb::config(
       ensure => present,
     }
 
+    Concat::Fragment<||> ~> Service['influxdb']
+
     concat::fragment { 'general-settings':
       target  => $config_path,
       content => template('influxdb/general.erb'),

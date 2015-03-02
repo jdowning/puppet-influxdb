@@ -88,6 +88,7 @@ class influxdb::config(
         user    => 'root',
         path    => ['/usr/bin','/bin'],
         notify  => Service['influxdb'],
+        require => Package['collectd'],
         unless  => "test -f ${collectd_typesdb}"
       }
     }

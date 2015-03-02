@@ -80,4 +80,15 @@ class influxdb::config(
       content => template('influxdb/storage.erb'),
       order   => '04'
     }
+
+    if($collectd_enabled){
+      $types = 'https://raw.githubusercontent.com/astro/collectd/master/src/types.db'
+      exec{'download types.db':
+        command => "wget ${types} -O ${collectd_typesdb}",
+        user    => 'root',
+        path    => ['/usr/bin','/bin'],
+        notify  => Service['influxdb'],
+        unless  => "test -f ${collectd_typesdb}"
+      }
+    }
 }

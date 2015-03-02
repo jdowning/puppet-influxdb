@@ -11,12 +11,13 @@
   # Configure the collectd api
   [input_plugins.collectd]
   enabled = <%= @collectd_enabled %>
-  <% if @collectd_enabled %>
-   address = "<%= @collectd_address %>"
-   port = <%= @collectd_port %>
-   database = "<%= @collectd_database %>"
-   typesdb = "<%= @collectd_typesdb %>"
-  <% end %>
+<% if @collectd_enabled -%>
+  address = "<%= @collectd_address %>"
+  port = <%= @collectd_port %>
+  database = "<%= @collectd_database %>"
+  typesdb = "<%= @collectd_typesdb %>"
+<% end -%>
+
   # Configure the udp api
   [input_plugins.udp]
   enabled = false

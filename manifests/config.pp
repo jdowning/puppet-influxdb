@@ -13,12 +13,19 @@ class influxdb::config(
   # [api]
   $api_port = '8086',
   $api_read_timeout = '5s',
+
   # [input_plugins]
   $collectd_enabled = false,
   $collectd_address = '0.0.0.0',
   $collectd_port    = '2003',
   $collectd_database = '',
   $collectd_typesdb = '/usr/share/collectd/types.db',
+
+  $graphite_enabled = false,
+  $graphite_address = '0.0.0.0',
+  $graphite_port    = '2003',
+  $graphite_database = '',
+  $graphite_udp_enabled = false,
 
   # [raft]
   $raft_port = '8090',

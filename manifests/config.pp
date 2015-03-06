@@ -248,6 +248,12 @@ class influxdb::config {
       value   => "\"${influxdb::logging_level}\"",
     }
 
+    ini_setting { 'write_tracing':
+      section => 'logging',
+      setting => 'write-tracing',
+      value   => $influxdb::write_tracing
+    }
+
     ini_setting { 'logging_file':
       section => 'logging',
       setting => 'file',

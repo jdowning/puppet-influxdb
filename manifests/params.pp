@@ -31,6 +31,7 @@ class influxdb::params {
 
   # [logging]
   $logging_level                        = 'info'
+  $write_tracing                        = 'false'
 
   #
   # For 0.9.0, will want to override logging_file to

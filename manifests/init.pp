@@ -15,6 +15,7 @@ class influxdb (
   $data_port                            = $influxdb::params::data_port,
   $cluster_state_storage_dir            = $influxdb::params::cluster_state_storage_dir,
   $logging_level                        = $influxdb::params::logging_level,
+  $write_tracing                        = $influxdb::params::write_tracing,
   $logging_file                         = $influxdb::params::logging_file,
   $admin_port                           = $influxdb::params::admin_port,
   $admin_assets                         = $influxdb::params::admin_assets,

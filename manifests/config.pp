@@ -199,6 +199,12 @@ class influxdb::config {
       value   => $influxdb::reporting_disabled,
     }
 
+    ini_setting { 'port':
+      section => '',
+      setting => 'port',
+      value   => $influxdb::cluster_port,
+    }
+
     # [initialization]
     ini_setting { 'initialization_join_urls':
       section => 'initialization',
@@ -220,13 +226,6 @@ class influxdb::config {
       value   => "\"${influxdb::broker_dir}\"",
     }
 
-    # [broker]
-    ini_setting { 'broker_port':
-      section => 'broker',
-      setting => 'port',
-      value   => $influxdb::broker_port,
-    }
-
     # [data]
     ini_setting { 'data_directory':
       section => 'data',
@@ -234,30 +233,17 @@ class influxdb::config {
       value   => "\"${influxdb::data_dir}\"",
     }
 
-    # [data]
-    ini_setting { 'data_port':
-      section => 'data',
-      setting => 'port',
-      value   => $influxdb::data_port,
-    }
-
     # [logging]
-    ini_setting { 'logging_level':
-      section => 'logging',
-      setting => 'level',
-      value   => "\"${influxdb::logging_level}\"",
-    }
-
     ini_setting { 'write_tracing':
       section => 'logging',
       setting => 'write-tracing',
       value   => $influxdb::write_tracing
     }
 
-    ini_setting { 'logging_file':
+    ini_setting { 'raft_tracing':
       section => 'logging',
-      setting => 'file',
-      value   => "\"${influxdb::logging_file}\"",
+      setting => 'raft-tracing',
+      value   => $influxdb::raft_tracing
     }
 
     # [admin]

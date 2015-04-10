@@ -10,7 +10,7 @@ class influxdb::params {
   # /etc/opt/influxdb/influxdb.conf
   #
   $config_path                          = '/opt/influxdb/shared/config.toml'
-
+  $cluster_port                         = '8086'
   $hostname                             = $::hostname
   $bind_address                         = '0.0.0.0'
   $reporting_disabled                   = true
@@ -32,6 +32,7 @@ class influxdb::params {
   # [logging]
   $logging_level                        = 'info'
   $write_tracing                        = 'false'
+  $raft_tracing                         = 'false'
 
   #
   # For 0.9.0, will want to override logging_file to

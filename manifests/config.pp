@@ -164,10 +164,10 @@ class influxdb::config {
     value   => $influxdb::leveldb_point_batch_size,
   }
 
-  ini_setting { 'leveldb_point_write_size':
+  ini_setting { 'leveldb_write_batch_size':
     section => 'leveldb',
-    setting => 'point-write-size',
-    value   => $influxdb::leveldb_point_write_size,
+    setting => 'write-batch-size',
+    value   => $influxdb::leveldb_write_batch_size,
   }
 
   # [sharding]

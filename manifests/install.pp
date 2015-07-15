@@ -25,8 +25,8 @@ class influxdb::install {
     case $::osfamily {
       'Debian': {
         $package_source_name = $::architecture ? {
-          default => "influxdb_${influxdb::version}_amd64.deb",
           /386/   => "influxdb_${influxdb::version}_i386.deb",
+          default => "influxdb_${influxdb::version}_amd64.deb",
         }
         $package_source = "http://influxdb.s3.amazonaws.com/${package_source_name}"
         exec {
@@ -53,8 +53,8 @@ class influxdb::install {
       }
       'RedHat', 'Amazon': {
         $package_source_name = $::architecture ? {
-          default => "influxdb-${influxdb::version}-1.x86_64.rpm",
           /386/   => "influxdb-${influxdb::version}-1.i686.rpm",
+          default => "influxdb-${influxdb::version}-1.x86_64.rpm",
         }
         $package_source = "http://influxdb.s3.amazonaws.com/${package_source_name}"
         exec {

@@ -4,7 +4,7 @@
 
 ## Description
 
-puppet module to install and configure [influxdb](https://influxdb.org).
+puppet module to install and configure [influxdb](https://influxdb.org) (version 0.9.x and newer).
 
 ## Installation
 

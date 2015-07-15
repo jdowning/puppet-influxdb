@@ -4,15 +4,15 @@ class influxdb::params {
   $ensure                               = 'installed'
   $version                              = 'latest'
   $install_from_repository              = true
-  $config_path                          = '/opt/influxdb/shared/config.toml'
+  $config_file                          = '/etc/opt/influxdb/influxdb.conf'
 
   # general section of config.toml
   $reporting_disabled                   = false
 
-  # [logging]
-  $logging_level                        = 'info'
-  $logging_file                         = '/opt/influxdb/shared/influxdb.log'
+  # [meta]
+  $hostname                             = '192.168.0.1'
+  $peers                                = ['192.168.0.2', '192.168.0.3']
 
-  # [cluster]
-  $cluster_seed_servers                 = '[]'
+  # [retention]
+  $replication                          = 3
 }

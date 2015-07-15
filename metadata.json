@@ -1,12 +1,18 @@
 {
   "name": "rplessl-influxdb",
-  "version": "0.4.0",
+  "version": "0.9.1",
   "source": "https://github.com/rplessl/puppet-influxdb",
   "author": "Justin Downing and Roman Plessl",
   "license": "MIT License",
-  "summary": "Setup and manage influxdb",
-  "description": "Setup and manage influxdb",
+  "summary": "Setup and manage influxdb 0.9.x",
+  "description": "Setup and manage influxdb 0.9.x",
+  "source": "git://github.com/rplessl/puppet-influxdb.git",
   "project_page": "https://github.com/rplessl/puppet-influxdb",
+  "issues_url": "https://github.com/rplessl/puppet-influxdb/issues",
+  "tags": [
+    "influxdb",
+    "monitoring"
+  ],
   "dependencies": [
     { "name": "puppetlabs/inifile", "version_requirement": ">= 1.0.0" }
   ],
@@ -29,7 +35,7 @@
     },
     {
       "operatingsystem": "Debian",
-      "operatingsystemrelease": [ "6", "7" ]
+      "operatingsystemrelease": [ "6", "7", "8" ]
     },
     {
       "operatingsystem": "Ubuntu",

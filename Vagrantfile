@@ -22,7 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "debian6", autostart: false do |debian6|
-    debian6.vm.box = "puppetlabs/debian-6.0.9-64-puppet"
+    debian6.vm.box = "puppetlabs/debian-6.0.10-64-puppet"
     debian6.vm.provision :puppet do |puppet|
       puppet.manifests_path = "tests"
       puppet.manifest_file  = "vagrant.pp"
@@ -31,7 +31,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "debian", autostart: false do |debian|
-    debian.vm.box = "puppetlabs/debian-7.6-64-puppet"
+    debian.vm.box = "puppetlabs/debian-7.8-64-puppet"
     debian.vm.provision :puppet do |puppet|
       puppet.manifests_path = "tests"
       puppet.manifest_file  = "vagrant.pp"
@@ -40,7 +40,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "centos6", autostart: false do |centos6|
-    centos6.vm.box = "puppetlabs/centos-6.5-64-puppet"
+    centos6.vm.box = "puppetlabs/centos-6.6-64-puppet"
     centos6.vm.provision :puppet do |puppet|
       puppet.manifests_path = "tests"
       puppet.manifest_file  = "vagrant.pp"

@@ -8,8 +8,7 @@ describe 'influxdb::config', :type => :class do
     let(:pre_condition) {
       'class{"influxdb" :
         install_from_repository => true,
-        config_path => "/opt/influxdb/shared/config.toml",
-        logging_file => "/opt/influxdb/shared/influxdb.log"
+        config_file => "/etc/opt/influxdb/influxdb.conf"
       }'
     }
 

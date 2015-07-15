@@ -25,11 +25,11 @@ These configuration parameter can be set:
   $reporting_disabled             = false
 
   # [meta]
-  $hostname                       = '192.168.0.1'
-  $peers                          = ['192.168.0.2', '192.168.0.3']
+  $hostname                       = 'localhost' or 192.168.0.1'
+  $peers                          = 'none'      or ['192.168.0.2', '192.168.0.3']
 
   # [retention]
-  $replication                    = 3
+  $replication                    = 'none'      or 3
 ```
 
 ## Testing

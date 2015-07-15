@@ -10,9 +10,9 @@ class influxdb::params {
   $reporting_disabled                   = false
 
   # [meta]
-  $hostname                             = '192.168.0.1'
-  $peers                                = ['192.168.0.2', '192.168.0.3']
+  $hostname                             = 'localhost'
+  $peers                                = 'none'
 
   # [retention]
-  $replication                          = 3
+  $replication                          = 'none'
 }

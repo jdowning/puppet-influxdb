@@ -17,7 +17,7 @@ class influxdb::config {
   ini_setting { 'reporting-disabled':
     section => '',
     setting => 'reporting-disabled',
-    value   => "\"${influxdb::reporting_disabled}\"",
+    value   => $influxdb::reporting_disabled,
   }
 
   # [meta]
@@ -27,17 +27,21 @@ class influxdb::config {
     value   => "\"${influxdb::hostname}\"",
   }
 
-  ini_setting { 'meta_peers':
-    section => 'meta',
-    setting => 'peers',
-    value   => "\"${influxdb::peers}\"",
+  if $influxdb::peers != 'none' {
+    ini_setting { 'meta_peers':
+      section => 'meta',
+      setting => 'peers',
+      value   => '\"${influxdb::peers}\"',
+    }
   }
 
-  # [retention]
-  ini_setting { 'retention_replication':
-    section => 'retention',
-    setting => 'replication',
-    value   => "\"$influxdb::replication\"",
+  if $influxdb::replication != 'none' {
+    # [retention]
+    ini_setting { 'retention_replication':
+      section => 'retention',
+      setting => 'replication',
+      value   => $influxdb::replication,
+    }
   }
 
 }

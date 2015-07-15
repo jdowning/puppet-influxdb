@@ -36,7 +36,7 @@ class influxdb::install {
             unless  => 'dpkg --list influxdb';
 
           'influxdb_dpkg':
-            command => "dpkg -i /tmp/${package_source_name}",
+            command => "sudo dpkg -i /tmp/${package_source_name}",
             path    => ['/bin', '/sbin', '/usr/bin'],
             require => [ Exec['influxdb_wget'] ];
 

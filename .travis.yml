@@ -11,7 +11,7 @@ cache: bundler
 bundler_args: --without development
 before_script:
   - wget http://influxdb.s3.amazonaws.com/influxdb_0.9.1_amd64.deb -O /tmp/influxdb_0.9.1_amd64.deb 
-  - dpkg -i /tmp/influxdb_0.9.1_amd64.deb
+  - sudo dpkg -i /tmp/influxdb_0.9.1_amd64.deb
 script: "bundle exec rake spec SPEC_OPTS='--format documentation'"
 env:
   - PUPPET_VERSION="~> 2.7.0"

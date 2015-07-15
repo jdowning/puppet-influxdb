@@ -1,5 +1,5 @@
 {
-  "name": "rplessl-influxdb",
+  "name": "puppet-influxdb",
   "version": "0.9.1",
   "source": "https://github.com/rplessl/puppet-influxdb",
   "author": "Justin Downing and Roman Plessl",

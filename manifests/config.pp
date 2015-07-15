@@ -5,7 +5,8 @@
 #   https://influxdb.com/docs/v0.9/administration/config.html
 #
 # DO NO CALL DIRECTLY
-class influxdb::config
+class influxdb::config {
+
   # defaults for all settings
   Ini_setting {
     ensure  => present,

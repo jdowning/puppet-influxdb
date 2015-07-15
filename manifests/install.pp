@@ -20,7 +20,7 @@ class influxdb::install {
     }
   }
 
-  if ((!$influxdb::install_from_repository) and ($my_package_ensure =~ /present|installed/ )) {
+  if ((!$influxdb::install_from_repository) and ("$my_package_ensure" =~ /present|installed/ )) {
     # package source and provider
     case $::osfamily {
       'Debian': {

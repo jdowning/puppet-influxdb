@@ -2,7 +2,7 @@
 # DO NOT CALL DIRECTLY
 class influxdb::params {
   $ensure                               = 'installed'
-  $version                              = 'latest'
+  $version                              = '0.9.1'
   $install_from_repository              = true
   $config_file                          = '/etc/opt/influxdb/influxdb.conf'
 

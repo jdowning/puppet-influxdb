@@ -24,23 +24,23 @@ class influxdb::config {
   ini_setting { 'meta_hostname':
     section => 'meta',
     setting => 'hostname',
-    value   => "\"${influxdb::hostname}\"",
+    value   => "\"${influxdb::meta_hostname}\"",
   }
 
-  if $influxdb::peers != 'none' {
+  if $influxdb::meta_peers != undef {
     ini_setting { 'meta_peers':
       section => 'meta',
       setting => 'peers',
-      value   => '\"${influxdb::peers}\"',
+      value   => $influxdb::meta_peers,
     }
   }
 
-  if $influxdb::replication != 'none' {
+  if $influxdb::retention_replication != undef {
     # [retention]
     ini_setting { 'retention_replication':
       section => 'retention',
       setting => 'replication',
-      value   => $influxdb::replication,
+      value   => $influxdb::retention_replication,
     }
   }
 

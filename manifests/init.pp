@@ -8,6 +8,7 @@ class influxdb (
   $meta_hostname            = $influxdb::params::meta_hostname,
   $meta_peers               = $influxdb::params::meta_peers,
   $retention_replication    = $influxdb::params::retention_replication,
+  $download_url               = $influxdb::params::download_url,
 ) inherits influxdb::params {
 
   class { 'influxdb::install': } ->

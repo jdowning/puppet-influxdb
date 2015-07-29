@@ -3,7 +3,6 @@ require 'spec_helper'
 describe 'influxdb::install', :type => :class do
 
   it { should create_class('influxdb::install') }
-  # it { should contain_package('influxdb') }
 
   context 'installing from a repository' do
     let(:pre_condition) {
@@ -68,6 +67,9 @@ describe 'influxdb::install', :type => :class do
           }
         end
       end
+
+    it { should contain_package('influxdb') }
+
     end
 
     context 'with download_url set' do

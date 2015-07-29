@@ -67,9 +67,6 @@ describe 'influxdb::install', :type => :class do
           }
         end
       end
-
-    it { should contain_package('influxdb') }
-
     end
 
     context 'with download_url set' do
@@ -106,4 +103,8 @@ describe 'influxdb::install', :type => :class do
       end
     end
   end
+
+
+  it { should contain_package('influxdb') }
+
 end

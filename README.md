@@ -12,7 +12,25 @@ puppet module to install and configure [influxdb](https://influxdb.org) (version
 
 ## Usage
 
+
+Basic default uses local package
+
 `class { 'influxdb': }`
+
+Install from amazon.s3 is default when not using repository
+```
+    class { 'influxdb':
+        install_from_repository => false,
+    }
+```
+Install using your own url/proxy
+```
+    class { 'influxdb':
+        install_from_repository => false,
+        source_url              => 'https://download.test.com/proxy/influxdb/influxdb-1.0.0.rpm'
+    }
+```
+
 
 These configuration parameter can be set:
 ```

@@ -6,6 +6,7 @@ class influxdb::params {
   $install_from_repository = true
   $config_file             = '/etc/opt/influxdb/influxdb.conf'
 
+  $download_url               = undef
   # general section of influxdb.conf
   $reporting_disabled      = false
 
@@ -15,4 +16,5 @@ class influxdb::params {
 
   # [retention]
   $retention_replication   = undef
+
 }

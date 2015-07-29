@@ -28,7 +28,12 @@ class influxdb::install {
           /386/   => "influxdb_${influxdb::version}_i386.deb",
           default => "influxdb_${influxdb::version}_amd64.deb",
         }
-        $package_source = "http://influxdb.s3.amazonaws.com/${package_source_name}"
+        if $influxdb::download_url != undef {
+          $package_source = $influxdb::download_url
+        }
+        else {
+          $package_source = "http://influxdb.s3.amazonaws.com/${package_source_name}"
+        }
         exec {
           'influxdb_wget':
             command => "wget ${package_source} -O /tmp/${package_source_name}",
@@ -56,7 +61,12 @@ class influxdb::install {
           /386/   => "influxdb-${influxdb::version}-1.i686.rpm",
           default => "influxdb-${influxdb::version}-1.x86_64.rpm",
         }
-        $package_source = "http://influxdb.s3.amazonaws.com/${package_source_name}"
+        if $influxdb::download_url != undef {
+          $package_source = $influxdb::download_url
+        }
+        else {
+          $package_source = "http://influxdb.s3.amazonaws.com/${package_source_name}"
+        }
         exec {
           'influxdb_rpm':
             command => "rpm -ivh ${package_source}",

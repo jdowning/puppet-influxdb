@@ -4,30 +4,29 @@
 
 ## Description
 
-puppet module to install and configure [influxdb](https://influxdb.org) (version 0.9.x and newer).
+puppet module to install and configure [influxdb](https://influxdb.org) (version 0.9.x and newer). Tested with InfluxDB 0.9.1 and 0.9.2.
 
 ## Installation
 
-`puppet module install --modulepath /path/to/puppet/modules rplessl-influxdb`
+`puppet module install --modulepath /path/to/puppet/modules puppet-influxdb`
 
 ## Usage
-
 
 Basic default uses local package
 
 `class { 'influxdb': }`
 
-Install from amazon.s3 is default when not using repository
+Install the influx packages from InfluxDB upstream Amazon s3 packages. This is the default when not using a self managed repository
 ```
     class { 'influxdb':
         install_from_repository => false,
     }
 ```
-Install using your own url/proxy
+Alternativly you can install packages using your own url/proxy
 ```
     class { 'influxdb':
         install_from_repository => false,
-        source_url              => 'https://download.test.com/proxy/influxdb/influxdb-1.0.0.rpm'
+        download_url              => 'https://download.test.com/proxy/influxdb/influxdb-1.0.0.rpm'
     }
 ```
 
@@ -37,6 +36,7 @@ These configuration parameter can be set:
   $ensure                         = 'installed'
   $version                        = 'latest'
   $install_from_repository        = true
+  $download_url                   = undef or https://download.test.com/influxdb.deb
   $config_file                    = '/etc/opt/influxdb/influxdb.conf'
 
   # general section of influxb.conf

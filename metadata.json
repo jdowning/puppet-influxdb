@@ -1,40 +1,45 @@
 {
-  "name": "jdowning-influxdb",
-  "version": "0.3.0",
-  "source": "https://github.com/justindowning/puppet-influxdb",
-  "author": "Justin Downing",
-  "license": "Apache License, Version 2.0",
-  "summary": "Setup and manage influxdb",
-  "description": "Setup and manage influxdb",
-  "project_page": "https://github.com/justindowning/puppet-influxdb",
+  "name": "rplessl-influxdb",
+  "version": "0.9.2",
+  "source": "https://github.com/rplessl/puppet-influxdb",
+  "author": "Justin Downing and Roman Plessl",
+  "license": "MIT License",
+  "summary": "Setup and manage influxdb 0.9.x",
+  "description": "Setup and manage influxdb 0.9.x",
+  "source": "git://github.com/rplessl/puppet-influxdb.git",
+  "project_page": "https://github.com/rplessl/puppet-influxdb",
+  "issues_url": "https://github.com/rplessl/puppet-influxdb/issues",
+  "tags": [
+    "influxdb",
+    "monitoring"
+  ],
   "dependencies": [
-    { "name": "nanliu/staging", "version_requirement": ">= 0.4.0" },
     { "name": "puppetlabs/inifile", "version_requirement": ">= 1.0.0" }
   ],
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
-      "operatingsystemrelease": [ "5", "6" ]
-    },
-    {
-      "operatingsystem": "CentOS",
-      "operatingsystemrelease": [ "5", "6" ]
-    },
-    {
-      "operatingsystem": "OracleLinux",
-      "operatingsystemrelease": [ "5", "6" ]
-    },
-    {
-      "operatingsystem": "Scientific",
-      "operatingsystemrelease": [ "5", "6" ]
-    },
-    {
-      "operatingsystem": "Debian",
       "operatingsystemrelease": [ "6", "7" ]
     },
     {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [ "6", "7" ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [ "6", "7" ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [ "6", "7" ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [ "6", "7", "8" ]
+    },
+    {
       "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [ "10.04", "12.04", "14.04" ]
+      "operatingsystemrelease": [ "12.04", "14.04" ]
     }
   ],
   "requirements": [

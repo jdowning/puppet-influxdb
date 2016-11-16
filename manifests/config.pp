@@ -1,213 +1,102 @@
 # == Class: influxdb::config
 # More information on these settings available at: http://influxdb.org/docs/configuration.html
-class influxdb::config {
-  ini_setting { 'hostname':
-    section => '',
-    setting => 'hostname',
-    value   => "\"${influxdb::hostname}\"",
-  }
-
-  ini_setting { 'bind_address':
-    section => '',
-    setting => 'bind-address',
-    value   => "\"${influxdb::bind_address}\"",
-  }
-
+class influxdb::config(
+  $config_path = '/opt/influxdb/shared/config.toml',
+  $hostname = $::hostname,
+  $bind_address = '0.0.0.0',
   # [logging]
-  ini_setting { 'logging_level':
-    section => 'logging',
-    setting => 'level',
-    value   => "\"${influxdb::logging_level}\"",
-  }
-
-  ini_setting { 'logging_file':
-    section => 'logging',
-    setting => 'file',
-    value   => "\"${influxdb::logging_file}\"",
-  }
-
+  $logging_level = 'info',
+  $logging_file = '/opt/influxdb/shared/influxdb.log',
   # [admin]
-  ini_setting { 'admin_port':
-    section => 'admin',
-    setting => 'port',
-    value   => $influxdb::admin_port,
-  }
-
-  ini_setting { 'admin_assets':
-    section => 'admin',
-    setting => 'assets',
-    value   => "\"${influxdb::admin_assets}\"",
-  }
-
+  $admin_port = '8083',
+  $admin_assets = '/opt/influxdb/current/admin',
   # [api]
-  ini_setting { 'api_port':
-    section => 'api',
-    setting => 'port',
-    value   => $influxdb::api_port,
-  }
+  $api_port = '8086',
+  $api_read_timeout = '5s',
 
-  ini_setting { 'api_read_timeout':
-    section => 'api',
-    setting => 'read-timeout',
-    value   => "\"${influxdb::api_read_timeout}\"",
-  }
+  # [input_plugins]
+  $collectd_enabled = false,
+  $collectd_address = '0.0.0.0',
+  $collectd_port    = '2003',
+  $collectd_database = '',
+  $collectd_typesdb = '/usr/share/collectd/types.db',
+
+  $graphite_enabled = false,
+  $graphite_address = '0.0.0.0',
+  $graphite_port    = '2003',
+  $graphite_database = '',
+  $graphite_udp_enabled = false,
 
   # [raft]
-  ini_setting { 'raft_port':
-    section => 'raft',
-    setting => 'port',
-    value   => $influxdb::raft_port,
-  }
-
-  ini_setting { 'raft_dir':
-    section => 'raft',
-    setting => 'dir',
-    value   => "\"${influxdb::raft_dir}\"",
-  }
-
-  ini_setting { 'raft_election_timeout':
-    section => 'raft',
-    setting => 'election-timeout',
-    value   => "\"${influxdb::raft_election_timeout}\"",
-  }
+  $raft_port = '8090',
+  $raft_dir = '/opt/influxdb/shared/data/raft',
+  $raft_election_timeout = '1s',
+  # [cluster]
+  $cluster_seed_servers = '[]',
+  $cluster_protobuf_port = '8099',
+  $cluster_protobuf_timeout = '2s',
+  $cluster_protobuf_heartbeat = '200ms',
+  $cluster_protobuf_min_backoff = '1s',
+  $cluster_protobuf_max_backoff = '10s',
+  $cluster_write_buffer_size = '10000',
+  $cluster_max_response_buffer_size = '100',
+  $cluster_concurrent_shard_query_limit = '10',
 
   # [storage]
-  ini_setting { 'storage_dir':
-    section => 'storage',
-    setting => 'dir',
-    value   => "\"${influxdb::storage_dir}\"",
-  }
-
-  ini_setting { 'storage_write_buffer_size':
-    section => 'storage',
-    setting => 'write-buffer-size',
-    value   => $influxdb::storage_write_buffer_size,
-  }
-
-  # [cluster]
-  ini_setting { 'cluster_seed_servers':
-    section => 'cluster',
-    setting => 'seed-servers',
-    value   => $influxdb::cluster_seed_servers,
-  }
-
-  ini_setting { 'cluster_protobuf_port':
-    section => 'cluster',
-    setting => 'protobuf_port',
-    value   => $influxdb::cluster_protobuf_port,
-  }
-
-  ini_setting { 'cluster_protobuf_timeout':
-    section => 'cluster',
-    setting => 'protobuf_timeout',
-    value   => "\"${influxdb::cluster_protobuf_timeout}\"",
-  }
-
-  ini_setting { 'cluster_protobuf_heartbeat':
-    section => 'cluster',
-    setting => 'protobuf_heartbeat',
-    value   => "\"${influxdb::cluster_protobuf_heartbeat}\"",
-  }
-
-  ini_setting { 'cluster_protobuf_min_backoff':
-    section => 'cluster',
-    setting => 'protobuf_min_backoff',
-    value   => "\"${influxdb::cluster_protobuf_min_backoff}\"",
-  }
-
-  ini_setting { 'cluster_protobuf_max_backoff':
-    section => 'cluster',
-    setting => 'protobuf_max_backoff',
-    value   => "\"${influxdb::cluster_protobuf_max_backoff}\"",
-  }
-
-  ini_setting { 'cluster_write_buffer_size':
-    section => 'cluster',
-    setting => 'write-buffer-size',
-    value   => $influxdb::cluster_write_buffer_size,
-  }
-
-  ini_setting { 'cluster_max_response_buffer_size':
-    section => 'cluster',
-    setting => 'max-response-buffer-size',
-    value   => $influxdb::cluster_max_response_buffer_size,
-  }
-
-  ini_setting { 'cluster_concurrent_shard_query_limit':
-    section => 'cluster',
-    setting => 'concurrent-shard-query-limit',
-    value   => $influxdb::cluster_concurrent_shard_query_limit,
-  }
-
+  $storage_dir = '/opt/influxdb/shared/data/db',
+  $storage_write_buffer_size = '10000',
   # [leveldb]
-  ini_setting { 'leveldb_max_open_files':
-    section => 'leveldb',
-    setting => 'max-open-files',
-    value   => $influxdb::leveldb_max_open_files,
-  }
-
-  ini_setting { 'leveldb_lru_cache_size':
-    section => 'leveldb',
-    setting => 'lru-cache-size',
-    value   => "\"${influxdb::leveldb_lru_cache_size}\"",
-  }
-
-  ini_setting { 'leveldb_max_open_shards':
-    section => 'leveldb',
-    setting => 'max-open-shards',
-    value   => $influxdb::leveldb_max_open_shards,
-  }
-
-  ini_setting { 'leveldb_point_batch_size':
-    section => 'leveldb',
-    setting => 'point-batch-size',
-    value   => $influxdb::leveldb_point_batch_size,
-  }
-
-  ini_setting { 'leveldb_point_write_size':
-    section => 'leveldb',
-    setting => 'point-write-size',
-    value   => $influxdb::leveldb_point_write_size,
-  }
-
-  # [sharding]
-
+  $leveldb_max_open_files = '40',
+  $leveldb_lru_cache_size = '200m',
+  $leveldb_max_open_shards = '0',
+  $leveldb_point_batch_size = '100',
+  $leveldb_point_write_size = '5000000',
   # [wal]
-  ini_setting { 'wal_dir':
-    section => 'wal',
-    setting => 'dir',
-    value   => "\"${influxdb::wal_dir}\"",
-  }
+  $wal_dir = '/opt/influxdb/shared/data/wal',
+  $wal_flush_after = '0',
+  $wal_bookmark_after = '0',
+  $wal_index_after = '1000',
+  $wal_requests_per_logfile = '10000') {
 
-  ini_setting { 'wal_flush_after':
-    section => 'wal',
-    setting => 'flush-after',
-    value   => $influxdb::wal_flush_after,
-  }
+    concat { $config_path:
+      ensure => present,
+    }
 
-  ini_setting { 'wal_bookmark_after':
-    section => 'wal',
-    setting => 'bookmark-after',
-    value   => $influxdb::wal_bookmark_after,
-  }
+    Concat::Fragment<||> ~> Service['influxdb']
 
-  ini_setting { 'wal_index_after':
-    section => 'wal',
-    setting => 'index-after',
-    value   => $influxdb::wal_index_after,
-  }
+    concat::fragment { 'general-settings':
+      target  => $config_path,
+      content => template('influxdb/general.erb'),
+      order   => '01'
+    }
 
-  ini_setting { 'wal_requests_per_logfile':
-    section => 'wal',
-    setting => 'requests-per-logfile',
-    value   => $influxdb::wal_requests_per_logfile,
-  }
+    concat::fragment { 'input-plugins':
+      target  => $config_path,
+      content => template('influxdb/plugins.erb'),
+      order   => '02'
+    }
 
-  # defaults for all settings
-  Ini_setting {
-    ensure  => present,
-    path    => $influxdb::config_path,
-    notify  => Service['influxdb'],
-    require => Package['influxdb'],
-  }
+    concat::fragment { 'clustering':
+      target  => $config_path,
+      content => template('influxdb/cluster.erb'),
+      order   => '03'
+    }
+
+    concat::fragment { 'storage':
+      target  => $config_path,
+      content => template('influxdb/storage.erb'),
+      order   => '04'
+    }
+
+    if($collectd_enabled){
+      $types = 'https://raw.githubusercontent.com/astro/collectd/master/src/types.db'
+      exec{'download types.db':
+        command => "wget ${types} -O ${collectd_typesdb}",
+        user    => 'root',
+        path    => ['/usr/bin','/bin'],
+        notify  => Service['influxdb'],
+        require => Package['collectd'],
+        unless  => "test -f ${collectd_typesdb}"
+      }
+    }
 }

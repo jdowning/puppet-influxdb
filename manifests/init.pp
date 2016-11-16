@@ -36,6 +36,7 @@ class influxdb (
   $wal_bookmark_after                   = $influxdb::params::wal_bookmark_after,
   $wal_index_after                      = $influxdb::params::wal_index_after,
   $wal_requests_per_logfile             = $influxdb::params::wal_requests_per_logfile,
+  $reporting_disabled                   = $influxdb::params::reporting_disabled,
 ) inherits influxdb::params {
 
   class { 'influxdb::config': }

@@ -58,4 +58,7 @@ class influxdb::params {
   $wal_bookmark_after                   = '0'
   $wal_index_after                      = '1000'
   $wal_requests_per_logfile             = '10000'
+
+  # [reporting]
+  $reporting_disabled                   = false
 }

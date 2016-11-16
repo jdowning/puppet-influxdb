@@ -2,6 +2,7 @@
 fixtures:
   repositories:
     inifile: https://github.com/puppetlabs/puppetlabs-inifile
+    stdlib: https://github.com/puppetlabs/puppetlabs-stdlib
     staging: https://github.com/nanliu/puppet-staging
   symlinks:
     influxdb: "#{source_dir}"

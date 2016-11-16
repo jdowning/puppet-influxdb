@@ -3,8 +3,10 @@ FORGE
   specs:
     nanliu/staging (0.4.0)
     puppetlabs/inifile (1.0.3)
+    puppetlabs/stdlib (4.5.1)
 
 DEPENDENCIES
   nanliu/staging (>= 0.4.0)
   puppetlabs/inifile (>= 1.0.0)
+  puppetlabs/stdlib (>= 4.5.1)
 

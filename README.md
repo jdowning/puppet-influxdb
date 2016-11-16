@@ -23,6 +23,16 @@ you have any ideas or contributions, feel free to open a pull request!
 
 Most of the configuration is parameterized, so you can freely adjust settings.
 
+### Configuring InfluxDB input plugins
+
+The module currently supports enabling and configuring the Graphite input plugin (PRs welcome):
+
+```
+class {'influxdb::input_plugins::graphite':
+  database => 'graphite',
+}
+```
+
 ## Testing
 
 ```

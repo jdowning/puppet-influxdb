@@ -4,13 +4,39 @@ class influxdb::params {
   $ensure                               = 'installed'
   $version                              = 'latest'
   $install_from_repository              = false
-  $config_path                          = '/opt/influxdb/shared/config.toml'
 
+  #
+  # For 0.9.0, will want to override config_path to
+  # /etc/opt/influxdb/influxdb.conf
+  #
+  $config_path                          = '/opt/influxdb/shared/config.toml'
+  $cluster_port                         = '8086'
   $hostname                             = $::hostname
   $bind_address                         = '0.0.0.0'
+  $reporting_disabled                   = true
+
+  # [authentication]
+  $authentication_enabled               = false
+
+  # [initialization]
+  $initialization_join_urls             = ""
+
+  # [broker]
+  $broker_dir                           = '/opt/influxdb/8086/broker'
+  $broker_port                          = '8086'
+
+  # [data]
+  $data_dir                             = '/opt/influxdb/8086/data'
+  $data_port                            = '8086'
 
   # [logging]
   $logging_level                        = 'info'
+  $write_tracing                        = 'false'
+  $raft_tracing                         = 'false'
+
+  #
+  # For 0.9.0, will want to override logging_file to
+  # /var/log/influxdb/influxdb.log
   $logging_file                         = '/opt/influxdb/shared/influxdb.log'
 
   # [admin]
@@ -33,6 +59,7 @@ class influxdb::params {
   $storage_write_buffer_size            = '10000'
 
   # [cluster]
+  $cluster_state_storage_dir            = '/opt/influxdb/state'
   $cluster_seed_servers                 = '[]'
   $cluster_protobuf_port                = '8099'
   $cluster_protobuf_timeout             = '2s'

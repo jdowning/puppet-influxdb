@@ -1,3 +1,7 @@
+# DEPRECATED
+
+> This project is no longer maintained. I recommend you check out [golja/influxdb](https://forge.puppet.com/golja/influxdb) for an updated Puppet module for InfluxDB.
+
 # influxdb
 
 [![Puppet Forge](http://img.shields.io/puppetforge/v/jdowning/influxdb.svg)](https://forge.puppetlabs.com/jdowning/influxdb) [![Build Status](https://travis-ci.org/justindowning/puppet-influxdb.png)](https://travis-ci.org/justindowning/puppet-influxdb)

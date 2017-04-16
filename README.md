@@ -23,6 +23,33 @@ you have any ideas or contributions, feel free to open a pull request!
 
 Most of the configuration is parameterized, so you can freely adjust settings.
 
+## Plugins
+
+InfluxDB ships with three input plugins. These can be configured from the Puppet module:
+
+#### collectd
+```
+class { 'influxdb':
+  input_plugins_collectd => true
+}
+```
+
+#### graphite
+```
+class { 'influxdb':
+  input_plugins_graphite => true
+}
+```
+
+#### udp
+```
+class { 'influxdb':
+  input_plugins_udp => true
+}
+```
+
+You can read more about the other input-plugins configuration options in [manifests/init.pp](https://github.com/justindowning/puppet-influxdb/blob/master/manifests/init.pp) and [templats/config.toml.erb](https://github.com/justindowning/puppet-influxdb/blob/master/templates/config.toml.erb).
+
 ## Testing
 
 ```

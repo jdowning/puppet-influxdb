@@ -52,6 +52,19 @@ class influxdb::config {
     value   => "\"${influxdb::api_read_timeout}\"",
   }
 
+  # [input_plugins]
+  $input_plugins_available = ['graphite', 'collectd', 'udp']
+  $input_plugins_to_disable = difference($input_plugins_available, $influxdb::input_plugins_enabled)
+  $input_plugins_to_enable = intersection($input_plugins_available,  $influxdb::input_plugins_enabled)
+
+  input_plugin { $input_plugins_to_disable:
+    enabled => false
+  }
+
+  input_plugin { $input_plugins_to_enable:
+    enabled => true
+  }
+
   # [raft]
   ini_setting { 'raft_port':
     section => 'raft',
